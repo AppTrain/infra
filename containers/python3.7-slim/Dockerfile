@@ -9,9 +9,17 @@ RUN apt-get update -yqq \
     && apt-get install -yqq --no-install-recommends curl \
     && apt-get autoremove -yqq --purge \
     && apt-get clean \
+    && curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python \
     && pip3 install virtualenv
 
 #RUN which python && which python3
 ENV VIRTUAL_ENV=/opt/venv
 RUN python3 -m virtualenv --python=/usr/local/bin/python3 $VIRTUAL_ENV
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+ENV PATH="$VIRTUAL_ENV/bin:/root/.poetry/bin:$PATH"
+
+
+# To get started you need Poetry's bin directory ($HOME/.poetry/bin) in your `PATH`
+# environment variable. Next time you log in this will be done
+# automatically.
+
+# To configure your current shell run `source $HOME/.poetry/env`
