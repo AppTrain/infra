@@ -10,3 +10,6 @@
 
 # x
 github-mirror/
+
+# ignore env config files
+*.envrc
