@@ -54,7 +54,7 @@ module "qubole_vpc" {
   # ##########################################################################
   # Public Subnets
 
-  public_subnets = ["10.0.5.0/24", "10.0.6.0/24"]
+  public_subnets = ["10.0.5.0/24"]
 
   public_subnet_tags = {
     isPublic = "true"
