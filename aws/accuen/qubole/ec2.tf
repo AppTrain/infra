@@ -21,7 +21,7 @@ resource "aws_instance" "qubole_bastion" {
 
   user_data = "${data.template_file.user_data.rendered}"
   #iam_instance_profile = "${aws_iam_instance_profile.ec2_instance.name}"
-  associate_public_ip_address = false
+  #associate_public_ip_address = false
 
 #   root_block_device = {
 #     volume_type = "gp2"
