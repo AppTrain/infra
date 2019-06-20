@@ -24,7 +24,7 @@ module "quboledb" {
   source            = "terraform-aws-modules/rds/aws"
   identifier        = "qubole-app-db-${var.env}"
   engine            = "mysql"
-  engine_version    = "5.7.22"
+  engine_version    = "8.0.15"
   instance_class    = "m5.xlarge"
   allocated_storage = 100
   storage_encrypted = true
@@ -56,6 +56,6 @@ module "quboledb" {
     Environment = "${var.env}"
   }
   family                    = "mysql"
-  major_engine_version      = "5.7"
+  major_engine_version      = "8.0"
   final_snapshot_identifier = "annalect-dig-${var.env}-db-snapshot-${random_string.unique_snapshot_id.result}"
 }
