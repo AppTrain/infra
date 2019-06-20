@@ -1,7 +1,3 @@
-resource "aws_key_pair" "ssh" {
-  key_name   = "annalect-dig-${var.env}-jeremiah"
-  public_key = "${var.env_ssh_key}"
-}
 
 resource "aws_instance" "qubole_bastion" {
   ami           = "${data.aws_ami.qubole_bastion.image_id}"
@@ -11,7 +7,7 @@ resource "aws_instance" "qubole_bastion" {
   vpc_security_group_ids = [
     "${aws_security_group.qubole_bastion.id}",
   ]
-  key_name  = "${aws_key_pair.ssh.key_name}"
+  key_name  = "${aws_key_pair.qubole_account.key_name}"
   subnet_id = "${module.qubole_vpc.public_subnets[0]}"
 
   lifecycle {
