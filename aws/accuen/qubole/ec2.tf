@@ -6,7 +6,7 @@ resource "aws_key_pair" "ssh" {
 resource "aws_instance" "qubole_bastion" {
   ami           = "${data.aws_ami.qubole_bastion.image_id}"
   instance_type = "m5.xlarge"
-  count         = 1
+  #count         = 1
 
   vpc_security_group_ids = [
     "${aws_security_group.qubole_bastion.id}",
@@ -25,7 +25,7 @@ resource "aws_instance" "qubole_bastion" {
 
   user_data = "${data.template_file.user_data.rendered}"
   #iam_instance_profile = "${aws_iam_instance_profile.ec2_instance.name}"
-  #associate_public_ip_address = true
+  associate_public_ip_address = false
 
 #   root_block_device = {
 #     volume_type = "gp2"
@@ -44,4 +44,9 @@ data "template_file" "user_data" {
               apt-get install ntpstat -y
               ntpq -pcrv
               EOF
+}
+
+resource "aws_eip" "bastion" {
+    instance = "${aws_instance.qubole_bastion.id}"
+    vpc = true
 }
