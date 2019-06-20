@@ -24,5 +24,5 @@ data "aws_ami" "qubole_bastion" {
     values = ["qubole-bastion-hvm-amzn-linux"]
   }
 
-  owners = ["330183209093"] #qubole #TODO verify account id
+  owners = ["808047697977"] #qubole # account number given by qubole
 }
