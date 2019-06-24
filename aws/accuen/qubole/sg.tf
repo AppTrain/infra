@@ -24,6 +24,21 @@ resource "aws_security_group_rule" "qubole_bastion_inbound" {
   to_port   = 22
 }
 
+resource "aws_security_group_rule" "qubole_7000_inbound" {
+  # this is some unknown port needed to make qubole run.
+  # security note: what is run on this port and how is it authenticated
+  # and authorized? 
+  security_group_id = "${aws_security_group.qubole_bastion.id}"
+
+  type     = "ingress"
+  protocol = "tcp"
+
+  cidr_blocks = "${var.qubole_access_ips}"
+
+  from_port = 7000
+  to_port   = 7000
+}
+
 resource "aws_security_group_rule" "qubole_bastion_outbound" {
   security_group_id = "${aws_security_group.qubole_bastion.id}"
 
