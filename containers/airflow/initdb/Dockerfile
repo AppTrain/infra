@@ -4,6 +4,4 @@ ENV AIRFLOW_HOME=/usr/local/airflow
 
 COPY run.sh ${AIRFLOW_HOME}
 WORKDIR ${AIRFLOW_HOME}
-USER airflow
-
 

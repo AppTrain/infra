@@ -9,18 +9,24 @@ RUN mkdir -p /usr/share/man/man1 \
         libsasl2-dev \
         libssl-dev \
         libffi-dev \
-        libpq-dev \
+        #libpq-dev \
         default-libmysqlclient-dev \
         build-essential \
         #tools
+        ca-certificates \
+        gpg \
         git \
         freetds-bin \        
-        postgresql-client \
+        #postgresql-client \
         apt-utils \
         curl \
         rsync \
         netcat \
         locales \
+    && curl -s -N https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
+    && echo deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main > /etc/apt/sources.list.d/pgdg.list \
+    && apt-get update \
+    && apt-get install -yqq --no-install-recommends postgresql-client-11 libpq-dev \
     && apt-get autoremove -yqq --purge \
     && apt-get clean \
     && mkdir /base
