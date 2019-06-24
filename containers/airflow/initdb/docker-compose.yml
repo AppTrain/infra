@@ -12,13 +12,15 @@ services:
     #   retries: 10
 
   airflow:
-    #build: .
-    image: "annalect/airflow:1.10.3"
+    build: .
+    #image: "annalect/airflow:1.10.3"
     depends_on:
       - db
     environment:
       AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql://airflow:airflow@db/airflow
-    command: airflow initdb
+    command: /usr/local/airflow/run.sh
+    volumes:
+      - .:/opt/local/src
     links:
       - db
   # initer:

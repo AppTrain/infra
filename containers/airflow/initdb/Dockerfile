@@ -2,7 +2,8 @@ FROM annalect/airflow:1.10.3
 LABEL maintainer="Annalect"
 ENV AIRFLOW_HOME=/usr/local/airflow
 
-COPY airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
+COPY run.sh ${AIRFLOW_HOME}
+WORKDIR ${AIRFLOW_HOME}
 USER airflow
-#RUN airflow initdb
+
 
