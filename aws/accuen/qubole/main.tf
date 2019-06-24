@@ -33,8 +33,8 @@ resource "aws_key_pair" "jeremiah" {
 
 resource "aws_key_pair" "qubole_account" {
   key_name   = "annalect-dig-${var.env}-qubole"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCyODZaLl2DgacYHgLrRCm1SfvvLGetuTZFZWhrWmbGpdxbYQLX08V8cW/UrLouExksE+Qs6WpfS3Jwkudfr6SSjzbR0m+vlNiwDFd1/tF/LaeJ1+nIWDgjisRcFUEf+XaAGRYpjcK3S539bK1APGdVh/nEVy4mu0MaQIreU+DQuPWUi1FX0qLMqQppdOZpsS2dDpYcPmwvOHnItVUSNSXUZag/7RRhz5R0h3ZDg/ZiW/cPTe08yR1PX15GLT/KYMbwVAzP/FeBZ3mhaWS1Ct2n/vnooyt9HAjJoe4Fw9CQLNx86WcxY6U4zzxltNL2EN6A2ISSYdcrj9V2Wu7iepxT qubole"
-}
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCh9Op7bZRLYUBuOuQjRkHdjToWIninu97+aZW3Pug4oups/XgTeNw+Qnhl7xQjKrkc7iAqlAmNiL7Ln7LWFj/BlMFTiHzb8WjZCFf/z+49mZ5U80zoCHvEcAAYntrAqvc6+W3z7gE/dp3knFlEu2Q3RZh7D1uxXDb3WxVQyrnTGWeJPzxPYRBjOEMosJI21vv1FG2ze62d/1PCIhH4HOM7OPA+YzlCRSOn27Icu2vbo7x26n17MxlYnjOgKBC7JpzktOc88tclrIzUAkKNuckN/HTcUskx9vbm/zriaTcUnVgns+wFc8z/2o9TXHjVXRN8a1iMh/lm4Sd1pZR9wvv/"
+}   
 
 variable qubole_access_ips {
   description = "list of IP addresses to access bastion from qubole"
