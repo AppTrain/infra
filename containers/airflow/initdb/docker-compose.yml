@@ -1,0 +1,27 @@
+version: '3'
+services:
+  db:
+    image: "postgres:11.4"
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_DB: airflow
+    # healthcheck:
+    #   test: [ "CMD", "pg_isready", "-q", "-d", "airflow", "-U", "airflow"]
+    #   timeout: 45s
+    #   interval: 10s
+    #   retries: 10
+
+  airflow:
+    #build: .
+    image: "annalect/airflow:1.10.3"
+    depends_on:
+      - db
+    environment:
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql://airflow:airflow@db/airflow
+    command: airflow initdb
+    links:
+      - db
+  # initer:
+  #   build: .
+  #   volumes:
+  #     - .:/opt/local/src

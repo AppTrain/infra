@@ -30,6 +30,7 @@ ndg-httpsclient = "0.5.1"
 pyasn1 = "0.4.5"
 apache-airflow = "1.10.3"
 redis = "3.2.1"
+psycopg2 = "2.8.3"
 
 #git+ssh://github.com/accuenmedia/sizmek_api.git#egg=sizmek_api
 

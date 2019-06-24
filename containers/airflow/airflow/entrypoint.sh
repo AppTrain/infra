@@ -29,35 +29,39 @@
 # AIRFLOW__CELERY__BROKER_URL="redis://$REDIS_PREFIX$REDIS_HOST:$REDIS_PORT/1"
 
 
-case "$1" in
-  webserver)
-    airflow initdb
+# case "$1" in
+#   webserver)
+#     airflow initdb
 
-    # Install creds
-    # for f in /docker-entrypoint-initenv.d/*; do
-    #     case "$f" in *.py)
-    #         echo "!! $f"
-    #         python "$f"
-    #     esac
-    # done
+#     # Install creds
+#     # for f in /docker-entrypoint-initenv.d/*; do
+#     #     case "$f" in *.py)
+#     #         echo "!! $f"
+#     #         python "$f"
+#     #     esac
+#     # done
 
-    if [ "$AIRFLOW__CORE__EXECUTOR" = "LocalExecutor" ]; then
-      # With the "Local" executor it should all run in one container.
-      airflow scheduler &
-    fi
-    exec airflow webserver
+#     if [ "$AIRFLOW__CORE__EXECUTOR" = "LocalExecutor" ]; then
+#       # With the "Local" executor it should all run in one container.
+#       airflow scheduler &
+#     fi
+#     exec airflow webserver
 
 
-    ;;
-  worker|scheduler)
-    # To give the webserver time to run initdb.
-    sleep 10
-    exec airflow "$@"
+#     ;;
+#   worker|scheduler)
+#     # To give the webserver time to run initdb.
+#     sleep 10
+#     exec airflow "$@"
 
-    airflow [worker,scheduler] [*]
-    ;;
-  *)
-    # The command is something like bash, not an airflow subcommand. Just run it in the right environment.
-    exec "$@"
-    ;;
-esac
+#     airflow [worker,scheduler] [*]
+#     ;;
+#   *)
+#     # The command is something like bash, not an airflow subcommand. Just run it in the right environment.
+#     exec "$@"
+#     ;;
+# esac
+
+which airflow
+exec airflow --version
+exec airflow "$@"
