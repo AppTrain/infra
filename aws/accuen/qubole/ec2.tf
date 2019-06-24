@@ -17,6 +17,7 @@ resource "aws_instance" "qubole_bastion" {
   tags = {
     Name        = "annalect-dig-bastion-${var.env}"
     env         = "${var.env}"
+    ansible     = "${var.env}_bastion"
   }
 
   user_data = "${data.template_file.user_data.rendered}"
