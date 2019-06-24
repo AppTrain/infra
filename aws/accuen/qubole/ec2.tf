@@ -7,7 +7,7 @@ resource "aws_instance" "qubole_bastion" {
   vpc_security_group_ids = [
     "${aws_security_group.qubole_bastion.id}",
   ]
-  key_name  = "${aws_key_pair.qubole_account.key_name}"
+  key_name  = "${aws_key_pair.ansible.key_name}"
   subnet_id = "${module.qubole_vpc.public_subnets[0]}"
 
   lifecycle {

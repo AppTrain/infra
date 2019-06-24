@@ -36,6 +36,12 @@ resource "aws_key_pair" "qubole_account" {
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCh9Op7bZRLYUBuOuQjRkHdjToWIninu97+aZW3Pug4oups/XgTeNw+Qnhl7xQjKrkc7iAqlAmNiL7Ln7LWFj/BlMFTiHzb8WjZCFf/z+49mZ5U80zoCHvEcAAYntrAqvc6+W3z7gE/dp3knFlEu2Q3RZh7D1uxXDb3WxVQyrnTGWeJPzxPYRBjOEMosJI21vv1FG2ze62d/1PCIhH4HOM7OPA+YzlCRSOn27Icu2vbo7x26n17MxlYnjOgKBC7JpzktOc88tclrIzUAkKNuckN/HTcUskx9vbm/zriaTcUnVgns+wFc8z/2o9TXHjVXRN8a1iMh/lm4Sd1pZR9wvv/"
 }   
 
+resource "aws_key_pair" "ansible" {
+  key_name   = "annalect-dig-${var.env}-ansible"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDH6f46u4zFAS6HOYlmSS7of23O0FbCpA5EBKtWuWDgVCxDa1fNqcTRLn5G0uLRBXHyRX+odgHRyCrfVgHWQndlp39OGbNZGl3KwnXG+HTQv/cSJGpQypRgEjbVmxvu8ws5HRn2dTuOYaAG1Eq3C2AUGSeSs5xRNkSY2SCtwSHHehIpu2DrX1FFVe+uSsydHzEpI4BA7PDTLWmfeaom1snAA4E0zxTBRvcqUScisfLt040N6DUO64abkxhqW9nzft9Tzx1P6qNPK+tpXsDveA8oEeMUU2JmHz6pxbG6lkCw9RRBiG2lriRwe42r3nktrrRfntQ7lHl6UAIHjlvGPCjc4Ijz6CbfyOgJJjBZtft5GkV8Ae1zp0YA75wgl6Ee5SVy5FnAa3E5S9HTakc07qpkGjMKOL86dV4DS5YJEz7LDXVhj3qZDtnQkuvWPrRiStdpSl9bmq0kkpkRlba6nXq+XhNZlJmnkIOPCXAAuuA8kLD9R6uWG31OyhBhASbBogX+sB3EiyUgr26HUAzNxP4O0sO7y3ANBSwbB4pXkMH6uIYgaDfj30GUctAH2vm59olDVjwKkBuq7mEeWUK4AbkZQJL2jJ/pwFUtZ3efxBQhBBp68UcnvEsLmShj6gGRjXqXVLxMKbbPIJHHG2qRJQxw94YbCEe5aowz8jSrh0JTUw== qubole ansible key"
+}
+
+
 variable qubole_access_ips {
   description = "list of IP addresses to access bastion from qubole"
   default = [

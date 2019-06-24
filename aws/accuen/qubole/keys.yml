@@ -1,0 +1,7 @@
+
+- name: fiddle with the keys
+  hosts: tag_ansible_qubole_bastion
+  become: True
+  gather_facts: False
+  tasks:
+    - ping:
