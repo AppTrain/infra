@@ -23,7 +23,7 @@ module "qubole_vpc" {
   # ##########################################################################
   # Private Subnets 
 
-  private_subnets      = ["10.0.2.0/24"]
+  private_subnets      = ["10.0.2.0/24", "10.0.3.0/24"]
   
   private_subnet_tags = {
     isPublic = "false"

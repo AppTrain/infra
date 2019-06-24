@@ -25,14 +25,14 @@ module "quboledb" {
   identifier        = "qubole-app-db-${var.env}"
   engine            = "mysql"
   engine_version    = "8.0.15"
-  instance_class    = "m5.xlarge"
+  instance_class    = "db.m5.xlarge"
   allocated_storage = 100
   storage_encrypted = true
   multi_az          = false
   #snapshot_identifier = "${data.aws_db_snapshot.db_snapshot.id}" # provision this rds instance with this snapshot
   # kms_key_id = "arm:aws:kms:<region>:<account id>:key/<kms key id>"
 
-  name     = "annalect-dig-${var.env}"
+  name     = "annalectdig${var.env}"
   username = "${var.rds_username}"
   password = "${var.rds_password}"
   port     = 3306
@@ -44,8 +44,10 @@ module "quboledb" {
   backup_window           = "03:00-06:00"
   backup_retention_period = 30
 
-  monitoring_interval = "30"
-  monitoring_role_name = "QuboleRDSMonitoringRole-${var.env}"
+  # https://github.com/terraform-aws-modules/terraform-aws-rds/issues/136
+  # waiting on resolution to bump that back to 30
+  monitoring_interval = 0 #30
+  monitoring_role_name = "RDSMonitoringRole-${var.env}"
   create_monitoring_role = true
   skip_final_snapshot = false
 
@@ -55,7 +57,7 @@ module "quboledb" {
     Name        = "annalect-dig-rds-${var.env}"
     Environment = "${var.env}"
   }
-  family                    = "mysql"
+  family                    = "mysql8.0"
   major_engine_version      = "8.0"
   final_snapshot_identifier = "annalect-dig-${var.env}-db-snapshot-${random_string.unique_snapshot_id.result}"
 }
