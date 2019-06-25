@@ -3,6 +3,19 @@
 #     source = "../../../terraform-modules/repos"
 # }
 
+module apd {
+    source = "../../../terraform-modules/repository_existing"
+    name = "apd"
+    description = "accuen pipeline data"
+}
+
+module smp {
+    source = "../../../terraform-modules/repository_existing"
+    name = "smp"
+    description = "smp"
+}
+
+
 module docker_python {
     source = "../../../terraform-modules/repository"
     name = "docker-python"
