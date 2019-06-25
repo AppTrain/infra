@@ -5,3 +5,16 @@
   gather_facts: False
   tasks:
     - ping:
+
+    # Note: this will add keys to server
+    # TODO: implement removal of keys
+
+    - name: Set up multiple authorized keys
+      authorized_key:
+        user: ec2-user
+        state: present
+        key: '{{ item }}'
+      with_file:
+        - public_keys/env_backup.pub
+        - public_keys/jeremiah.pub
+        - public_keys/qubole.pub
