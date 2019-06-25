@@ -61,3 +61,12 @@ module "quboledb" {
   major_engine_version      = "8.0"
   final_snapshot_identifier = "annalect-dig-${var.env}-db-snapshot-${random_string.unique_snapshot_id.result}"
 }
+
+# resource "aws_secretsmanager_secret" "qubole_rds" {
+#   name = "tf_${var.env}_rds"
+#   description = "rds password for env: ${var.env}"
+#   tags = {
+#     Terraform = true
+#     env = "${var.env}"
+#   }
+# }
