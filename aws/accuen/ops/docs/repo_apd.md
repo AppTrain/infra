@@ -1,7 +1,7 @@
 # apd
 
 - **description**: accuen pipeline data
-- **topics**: 
+- **topics**: airflow, etl, python
 - [github.com/accuenmedia/apd](https://github.com/accuenmedia/apd)
 - **ssh clone**: `git@github.com:accuenmedia/apd.git`
 - **ecr repo**: `348194362585.dkr.ecr.us-west-2.amazonaws.com/accuenmedia/apd`
