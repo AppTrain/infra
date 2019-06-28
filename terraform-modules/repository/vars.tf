@@ -13,6 +13,11 @@ variable "topics" {
     ]
 }
 
+variable "buildkite_webhook" {
+    type = "string"
+    default = "invalid"
+}
+
 ## OUTPUT
 
 output "github_html_url" {

@@ -15,23 +15,20 @@ resource "github_repository" "this" {
     topics = "${var.topics}"
 }
 
-# resource "github_repository" "docker_python" {
-#   full_name = "accuenmedia/docker-python"
-# }
+resource "github_repository_webhook" "infra" {
+  repository = "${github_repository.this.name}"
+  count = "${var.buildkite_webhook == "invalid" ? 0 : 1}"
 
-# resource "github_repository_webhook" "infra" {
-#   repository = "${data.github_repository.infra.name}"
+  configuration {
+    url          = "${var.buildkite_webhook}"
+    content_type = "form"
+    insecure_ssl = false
+  }
 
-#   configuration {
-#     url          = "https://google.de/"
-#     content_type = "form"
-#     insecure_ssl = false
-#   }
+  active = true
 
-#   active = false
-
-#   events = ["push"]
-# }
+  events = ["push"]
+}
 
 resource "github_team_repository" "this" {
   team_id    = "${data.github_team.accuen.id}"
