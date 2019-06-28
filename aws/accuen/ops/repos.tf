@@ -29,3 +29,17 @@ module airflow {
     description = "airflow baked into docker"
     topics = ["airflow", "python", "docker"]
 }
+
+module entrypoint {
+    source = "../../../terraform-modules/repository"
+    name = "entrypoint"
+    description = "some dev ops documentation"
+    topics = ["documentation"]
+}
+
+module docker_ops_tools {
+    source = "../../../terraform-modules/repository"
+    name = "docker-ops-tools"
+    description = "docker image containing ops tools"
+    topics = ["docker", "terraform", "ansible", "awscli"]
+}
