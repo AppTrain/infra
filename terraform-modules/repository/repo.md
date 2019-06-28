@@ -1,7 +1,7 @@
 # ${name}
 
-- description: ${description}
-- topics: ${topics}
+- **description**: ${description}
+- **topics**: ${topics}
 - [github.com/accuenmedia/${name}](${github})
-- ssh clone: ${clone}
-- ecr repo: ${ecr}
+- **ssh clone**: `${clone}`
+- **ecr repo**: `${ecr}`
