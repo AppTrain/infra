@@ -1,0 +1,27 @@
+---
+
+- name: Add the buildkite apt repository
+  apt_repository: 
+    repo: 'deb https://apt.buildkite.com/buildkite-agent stable main' 
+    state: present 
+    filename: buildkite-agent
+
+- name: Add the buildkite apt key
+  apt_key: 
+    keyserver: keyserver.ubuntu.com 
+    id: 32A37959C2FA5C3C99EFBC32A79206696452D198
+
+- name: Install buildkite agent package
+  apt: 
+    name: buildkite-agent 
+    state: present 
+    update_cache: true 
+    #allow_unauthenticated=true
+
+# - name: Configure buildkite agent
+#   lineinfile: 
+#     dest: /etc/buildkite-agent/buildkite-agent.cfg 
+#     regexp: ^token= 
+#     line: "token={{ buildkite_token }}"
+#   notify:
+#     - restart buildkite-agent

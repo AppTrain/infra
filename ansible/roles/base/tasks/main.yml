@@ -1,0 +1,8 @@
+---
+
+- name: Install Base Packages
+  apt:
+    pkg: 
+      - apt-transport-https
+      - git
+    state: present
