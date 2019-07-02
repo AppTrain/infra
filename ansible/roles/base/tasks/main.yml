@@ -6,3 +6,4 @@
       - apt-transport-https
       - git
     state: present
+    update_cache: true

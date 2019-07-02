@@ -1,0 +1,9 @@
+---
+
+- name: Configure buildkite agent
+  lineinfile: 
+    dest: /etc/buildkite-agent/buildkite-agent.cfg 
+    regexp: ^token= 
+    line: "token={{ buildkite_token }}"
+  notify:
+    - restart buildkite-agent
