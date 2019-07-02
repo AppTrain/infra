@@ -1,0 +1,16 @@
+---
+
+- name: add official postgresql repository key
+  apt_key:
+    url: "{{ pg_key }}"
+    state: present
+
+- name: add official postgresql repository
+  apt_repository:
+    state: present
+    repo: 'deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release}}-pgdg main'
+
+- name: make apt-cache up to date
+  apt:
+    update_cache: yes
+

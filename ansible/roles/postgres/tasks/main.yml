@@ -1,0 +1,40 @@
+
+# https://wiki.postgresql.org/wiki/Apt
+
+- name: install required packages
+  apt:
+    pkg: 
+      - curl
+      - ca-certificates
+    state: latest
+    update_cache: true
+
+- name: set some useful facts
+  set_fact:
+    pg_version: 10
+    pg_key: http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc
+    
+- name: install apt repo from postgres
+  include_tasks: repo.yml
+
+- name: install required packages
+  apt:
+    pkg:
+      - "postgresql-{{ pg_version }}"
+      - "postgresql-client-{{ pg_version }}"
+      - python3-psycopg2 
+    state: latest
+    update_cache: true
+
+# - name: install postgresql dev
+#     apt:
+#       name: "postgresql-server-dev-{{ pg_version }}"
+#       state: "{{ pg_dev_headers }}"
+
+#   - name: install postgresql contrib
+#     apt:
+#       name: "postgresql-contrib-{{ pg_version }}"
+#       state: "{{ pg_contrib }}"
+
+- debug:
+    msg: ":-) COMPLETE"
