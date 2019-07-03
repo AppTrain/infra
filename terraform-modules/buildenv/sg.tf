@@ -56,17 +56,17 @@ resource "aws_security_group_rule" "bastion_inbound" {
 }
 
 
-# resource "aws_security_group_rule" "bastion_outbound" {
-#   security_group_id = "${aws_security_group.bastion.id}"
+resource "aws_security_group_rule" "bastion_outbound" {
+  security_group_id = "${aws_security_group.bastion.id}"
 
-#   type     = "egress"
-#   protocol = "-1"
+  type     = "egress"
+  protocol = "-1"
 
-#   cidr_blocks = ["10.0.0.0/16"]
+  cidr_blocks = ["0.0.0.0/0"]
 
-#   from_port = 0
-#   to_port   = 0
-# }
+  from_port = 0
+  to_port   = 0
+}
 
 # resource "aws_security_group_rule" "bastion_to_builder" {
 #   # this allows traffic from bastion to talk to the builder instances

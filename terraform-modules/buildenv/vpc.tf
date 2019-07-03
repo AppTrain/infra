@@ -68,7 +68,7 @@ module "this_vpc" {
   # ##########################################################################
   # Public Subnets
 
-  public_subnets = ["10.0.15.0/24"]
+  public_subnets = ["10.0.15.0/24", "10.0.16.0/24"]
 
   public_subnet_tags = {
     isPublic = "true"
