@@ -14,7 +14,7 @@ variable "builder_count" {
 variable "vpc_azs" {
     type = "list"
     default = [
-        #"us-west-2a", 
+        "us-west-2a", 
         "us-west-2b",
     ]
 }
