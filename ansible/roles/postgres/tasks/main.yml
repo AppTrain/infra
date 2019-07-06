@@ -22,7 +22,8 @@
     pkg:
       - "postgresql-{{ pg_version }}"
       - "postgresql-client-{{ pg_version }}"
-      - python3-psycopg2 
+      - python3-psycopg2
+      - python3-postgresql 
     state: latest
     update_cache: true
 
