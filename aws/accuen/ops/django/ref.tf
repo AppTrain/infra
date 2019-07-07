@@ -30,3 +30,10 @@ data "aws_subnet" "west_2b" {
     values = ["accuen-build-ops-vpc-private-us-west-2b"]
   }
 }
+
+data "aws_subnet" "west_2b_public" {
+  filter {
+    name   = "tag:Name"
+    values = ["accuen-build-ops-vpc-public-us-west-2b"]
+  }
+}

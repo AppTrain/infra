@@ -20,7 +20,7 @@ resource "aws_instance" "smp_db" {
   ]
   
   key_name  = "annalect-buildenv-build-ops-ansible"
-  subnet_id = "${data.aws_subnet.west_2b.id}"
+  subnet_id = "${data.aws_subnet.west_2b_public.id}"
   associate_public_ip_address = true
 
   tags = {
