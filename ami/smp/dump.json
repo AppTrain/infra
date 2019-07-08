@@ -4,10 +4,6 @@
     },
     "provisioners": [
       {
-        "type": "ansible",
-        "playbook_file": "./provision.yml"
-      },
-      {
         "type": "shell",
         "script": "pgdump.sh",
         "environment_vars": [

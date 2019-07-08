@@ -8,6 +8,10 @@
       include_role: 
         name: docker
     
+    - name: postgres up
+      include_role:
+        name: postgres
+
     # - name: cloudwatch instance monitoring
     #   include_role:
     #     name: cloudwatch
