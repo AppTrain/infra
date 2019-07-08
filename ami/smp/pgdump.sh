@@ -8,5 +8,5 @@ psql -d $CLONE_DB -c "select now();"
 echo "*****************"
 echo "Database $PGHOST is ready"
 
-mkdir -p /var/data
+sudo mkdir -p /var/data
 pg_dump -d $ClONE_DB > /var/data/smp.sql
