@@ -3,37 +3,33 @@
   become: True
   gather_facts: True
   tasks:
-    - name: include vault secrets
-      include_vars:
-        file: vault.yml
-        
-    - name: laying ground work
-      include_role: 
-        name: base
-    
+    # - name: include vault secrets
+    #   include_vars:
+    #     file: vault.yml
+            
     - name: postgres up
       include_role:
         name: postgres
     
-    - name: dump django clone
-      postgresql_db:
-        login_host: djangoclone.build-ops.in.accuenplatform.com
-        login_user: django
-        login_password: "{{ vault_pg_password }}"
-        name: django
-        state: dump
-        target: /tmp/django.sql
+    # - name: dump django clone
+    #   postgresql_db:
+    #     login_host: djangoclone.build-ops.in.accuenplatform.com
+    #     login_user: accuen
+    #     login_password: "{{ vault_pg_password }}"
+    #     name: django
+    #     state: dump
+    #     target: /tmp/django.sql
     
-    - name: restore django clone locally
-      postgresql_db:
-        name: django
-        state: restore
-        target: /tmp/django.sql
+    # - name: restore django clone locally
+    #   postgresql_db:
+    #     name: django
+    #     state: restore
+    #     target: /tmp/django.sql
     
-    - name: remove dump
-      file:
-        path: /tmp/django.sql
-        state: absent
+    # - name: remove dump
+    #   file:
+    #     path: /tmp/django.sql
+    #     state: absent
 
     # - name: cloudwatch instance monitoring
     #   include_role:

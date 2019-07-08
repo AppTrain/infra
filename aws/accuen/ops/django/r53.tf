@@ -20,5 +20,5 @@ resource "aws_route53_record" "smp_db" {
   name    = "clonetest.build-ops.out.accuenplatform.com"
   type    = "A"
   ttl     = 300
-  records = ["${aws_instance.smp_db.public_ip}"]
+  records = ["${aws_instance.smp_db.private_ip}"]
 }

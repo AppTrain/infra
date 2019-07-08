@@ -16,10 +16,10 @@ resource "aws_instance" "smp_db" {
   instance_type = "m5.xlarge"
 
   vpc_security_group_ids = [
-    "${data.aws_security_group.bastion.id}",
+    "${data.aws_security_group.builder.id}",
   ]
   
-  key_name  = "annalect-buildenv-build-ops-ansible"
+  key_name  = "${aws_key_pair.packer_smp.key_name}"
   subnet_id = "${data.aws_subnet.west_2b_public.id}"
   associate_public_ip_address = true
 
