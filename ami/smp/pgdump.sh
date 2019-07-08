@@ -9,4 +9,5 @@ echo "*****************"
 echo "Database $PGHOST is ready"
 
 sudo mkdir -p /var/data
+sudo chown -R ubuntu:ubuntu /var/data
 pg_dump -d $ClONE_DB > /var/data/smp.sql
