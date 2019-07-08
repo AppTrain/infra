@@ -1,5 +1,7 @@
 {
-    "variables":{},
+    "variables":{
+      "clone_db_password": "{{env `PGPASSWORD`}}"
+    },
     "provisioners": [
       {
         "type": "ansible",
@@ -11,7 +13,7 @@
         "environment_vars": [
           "PGHOST=djangoclone.build-ops.in.accuenplatform.com",
           "PGUSER=accuen",
-          "PGPASSWORD={{user `PGPASSWORD`}}",
+          "PGPASSWORD={{user `clone_db_password`}}",
           "CLONE_DB=django"
         ]
       }
@@ -26,7 +28,7 @@
         "ssh_bastion_host": "entrypoint.build-ops.out.accuenplatform.com",
         "ssh_bastion_username": "ubuntu",
         "ssh_bastion_private_key_file": "~/.annalect/ssh/packer_smp",
-        "ami_name": "annalect_smp_db {{timestamp}}",
+        "ami_name": "annalect_smp_dump {{timestamp}}",
         "associate_public_ip_address": "false",
         "vpc_filter": {
           "filters": {
