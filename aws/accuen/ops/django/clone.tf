@@ -1,6 +1,6 @@
 variable "rds_username" {
   description = "rds user name"
-  default = "accuen"
+  default = "django"
 }
 
 variable "rds_password" {
@@ -9,7 +9,7 @@ variable "rds_password" {
 
 data "aws_db_snapshot" "django" {
   db_instance_identifier = "django"
-  db_snapshot_identifier = "rds:django-2019-07-03-06-39"
+  db_snapshot_identifier = "rds:django-2019-07-08-06-39"
 }
 
 module "django_clone" {
@@ -36,8 +36,9 @@ module "django_clone" {
   #monitoring_interval = "30"
   #monitoring_role_name = "DjangoRDSMonitoringRole-${var.env}"
   create_monitoring_role = false
-  skip_final_snapshot = false
+  skip_final_snapshot = true
   publicly_accessible = false
+  final_snapshot_identifier = "tmpdjango-deleteme"
 
   tags = {
     Name        = "django-clone-${var.env}"

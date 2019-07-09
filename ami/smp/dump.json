@@ -8,7 +8,7 @@
         "script": "pgdump.sh",
         "environment_vars": [
           "PGHOST=djangoclone.build-ops.in.accuenplatform.com",
-          "PGUSER=accuen",
+          "PGUSER=django",
           "PGPASSWORD={{user `clone_db_password`}}",
           "CLONE_DB=django"
         ]
