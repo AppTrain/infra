@@ -6,6 +6,7 @@ module "this_buildenv" {
     # NOTE - ADD LABEL/COMMENT FOR ANY CIDR RANGE ADDED HERE
     # CIDR ranges without labels/comments will be removed
     access_ips = [
-        "104.136.141.97/32", # jeremiah office
+        "104.136.141.97/32", # jeremiah work office
+        "45.30.144.158/32", # jeremiah home office
     ]  
 }

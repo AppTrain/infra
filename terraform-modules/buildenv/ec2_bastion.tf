@@ -6,7 +6,7 @@ resource "aws_instance" "bastion" {
     "${aws_security_group.bastion.id}",
   ]
   
-  key_name  = "${aws_key_pair.packer_smp.key_name}"
+  key_name  = "${aws_key_pair.entrypoint.key_name}"
   subnet_id = "${module.this_vpc.public_subnets[0]}"
 
   tags = {
