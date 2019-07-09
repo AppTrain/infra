@@ -48,23 +48,80 @@ module "django_clone" {
   major_engine_version      = "10"
 }
 
-resource "aws_security_group" "django_clone" {
-  name        = "django-clone-${var.env}"
+resource "aws_security_group" "packer_to_clone" {
+  name        = "packer_${var.env}"
   description = "base secruity group for django clone db"
   vpc_id      = "${data.aws_vpc.selected.id}"
 
   tags = {
-    Name = "django-clone-${var.env}"
+    Name = "packer_${var.env}"
+    env  = "${var.env}"
+  }
+}
+resource "aws_security_group" "django_clone" {
+  name        = "rds-${var.env}"
+  description = "base secruity group for django clone db"
+  vpc_id      = "${data.aws_vpc.selected.id}"
+
+  tags = {
+    Name = "rds-${var.env}"
     env  = "${var.env}"
   }
 }
 
-resource "aws_security_group_rule" "django_clone_builder" {
-  # this allows traffic to the rds instances
+# resource "aws_security_group_rule" "clone_inbound" {
+#   security_group_id = "${aws_security_group.django_clone.id}"
+
+#   type     = "ingress"
+#   protocol = "tcp"
+
+#   cidr_blocks = ["10.0.0.0/16"]
+
+#   from_port = 22
+#   to_port   = 22
+# }
+
+# resource "aws_security_group_rule" "clone_outbound" {
+#   security_group_id = "${aws_security_group.django_clone.id}"
+
+#   type     = "egress"
+#   protocol = "-1"
+
+#   cidr_blocks = ["0.0.0.0/0"]
+
+#   from_port = 0
+#   to_port   = 0
+# }
+
+# resource "aws_security_group_rule" "bastion_to_clone" {
+#   # this allows traffic from bastion to talk to the builder instances
+#   security_group_id = "${aws_security_group.django_clone.id}"
+#   source_security_group_id = "${data.aws_security_group.bastion.id}"
+#   type = "ingress"
+#   protocol = "-1"
+#   from_port = 0
+#   to_port = 0
+# }
+
+
+
+
+resource "aws_security_group_rule" "packer_to_clone" {
+  # this allows traffic from bastion to talk to the builder instances
   security_group_id = "${aws_security_group.django_clone.id}"
-  source_security_group_id = "${data.aws_security_group.builder.id}"
+  source_security_group_id = "${aws_security_group.packer_to_clone.id}"
   type = "ingress"
   protocol = "-1"
   from_port = 0
   to_port = 0
 }
+
+# resource "aws_security_group_rule" "django_clone_builder" {
+#   # this allows traffic to the rds instances
+#   security_group_id = "${aws_security_group.django_clone.id}"
+#   source_security_group_id = "${data.aws_security_group.builder.id}"
+#   type = "ingress"
+#   protocol = "-1"
+#   from_port = 0
+#   to_port = 0
+# }

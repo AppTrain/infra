@@ -11,11 +11,6 @@ terraform {
 #   version = "2.15"
 # }
 
-resource "aws_key_pair" "packer_smp" {
-  key_name   = "annalect-${var.env}-pakcer-smp"
-  public_key = "${file("${pathexpand("~/.annalect/ssh/packer_smp.pub")}")}"
-}
-
 variable "env"{
   default = "build-ops-django-clone"
 }
