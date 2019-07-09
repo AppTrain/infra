@@ -125,6 +125,16 @@ resource "aws_security_group_rule" "packer_to_clone" {
   to_port = 0
 }
 
+resource "aws_security_group_rule" "clone_ingress" {
+  # this allows traffic from bastion to talk to the builder instances
+  security_group_id = "${aws_security_group.django_clone.id}"
+  source_security_group_id = "${aws_security_group.packer_to_clone.id}"
+  type = "ingress"
+  protocol = "-1"
+  from_port = 0
+  to_port = 0
+}
+
 # resource "aws_security_group_rule" "django_clone_builder" {
 #   # this allows traffic to the rds instances
 #   security_group_id = "${aws_security_group.django_clone.id}"
