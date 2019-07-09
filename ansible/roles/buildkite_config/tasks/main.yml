@@ -7,3 +7,27 @@
     line: "token={{ buildkite_token }}"
   notify:
     - restart buildkite-agent
+
+- block:
+    - name: ensure buildkite-agent user is present
+      user: 
+        name: "buildkite-agent"
+        state: present
+
+    - name: create ssh dir
+      file:
+        path: /var/lib/buildkite-agent/.ssh
+        state: directory
+    
+    - name: buildkite key for github
+      copy: 
+        src: "~/.annalect/ssh/{{ item['src'] }}"
+        dest: "/var/lib/buildkite-agent/.ssh/{{ item['dest'] }}" 
+        mode: 0600
+      loop:
+        - src: buildkite.pub
+          dest: id_rsa.pub
+        - src: buildkite
+          dest: id_rsa
+  become: yes
+  become_user: buildkite-agent
