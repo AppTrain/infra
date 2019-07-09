@@ -15,7 +15,7 @@ resource "aws_instance" "builder" {
   # }
 
   tags = {
-    Name        = "annalect-buildenv-${var.env}-${count.index}"
+    Name        = "annalect_buildenv_${var.env}_${count.index}"
     env         = "${var.env}"
     ansible     = "${var.env}_buildenv"
   }

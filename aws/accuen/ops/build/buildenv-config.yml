@@ -1,0 +1,21 @@
+- name: packer ami
+  hosts: tag_ansible_build_ops_buildenv
+  become: True
+  gather_facts: True
+  tasks:
+    - name: install buildkite
+      include_role:
+        name: buildkite-config    
+
+    # - name: cloudwatch instance monitoring
+    #   include_role:
+    #     name: cloudwatch
+    
+    # - name: aws logs
+    #   include_role:
+    #     name: awslogs
+    #   vars:
+    #     awslogs_config:
+    #       - file: /var/log/syslog
+    #         datetime_format: "%b %d %H:%M:%S"
+    #         log_group_name: syslog

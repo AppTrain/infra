@@ -1,6 +1,6 @@
 variable "env" {
     type = "string"
-    default = "build-ops"
+    default = "build_ops"
 }
 
 variable "builder_count" {
