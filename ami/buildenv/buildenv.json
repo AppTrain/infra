@@ -2,6 +2,10 @@
     "variables":{},
     "provisioners": [
       {
+        "type": "shell",
+        "script": "hugo.sh"
+      },
+      {
         "type": "ansible",
         "playbook_file": "./provision.yml"
       }
