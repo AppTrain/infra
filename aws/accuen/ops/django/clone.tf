@@ -30,7 +30,7 @@ module "django_clone" {
   vpc_security_group_ids  = ["${aws_security_group.django_clone.id}"]
   subnet_ids              = ["${data.aws_subnet.west_2a.id}", "${data.aws_subnet.west_2b.id}"]
   maintenance_window      = "Mon:00:00-Mon:03:00"
-  apply_immediately = true
+  apply_immediately = false
   backup_window           = "03:00-06:00"
   backup_retention_period = 1
   #monitoring_interval = "30"
@@ -38,7 +38,7 @@ module "django_clone" {
   create_monitoring_role = false
   skip_final_snapshot = true
   publicly_accessible = false
-  final_snapshot_identifier = "tmpdjango-deleteme"
+  #final_snapshot_identifier = "tmpdjango-deleteme"
 
   tags = {
     Name        = "django-clone-${var.env}"
@@ -49,8 +49,8 @@ module "django_clone" {
 }
 
 resource "aws_security_group" "packer_to_clone" {
-  name        = "packer_${var.env}"
-  description = "base secruity group for django clone db"
+  name        = "packer-${var.env}"
+  description = "packer processes connecting to database"
   vpc_id      = "${data.aws_vpc.selected.id}"
 
   tags = {
@@ -58,6 +58,17 @@ resource "aws_security_group" "packer_to_clone" {
     env  = "${var.env}"
   }
 }
+
+resource "aws_security_group_rule" "bastion_to_packer" {
+  # this allows traffic from bastion to talk to the builder instances
+  security_group_id = "${aws_security_group.packer_to_clone.id}"
+  source_security_group_id = "${data.aws_security_group.bastion.id}"
+  type = "ingress"
+  protocol = "-1"
+  from_port = 0
+  to_port = 0
+}
+
 resource "aws_security_group" "django_clone" {
   name        = "rds-${var.env}"
   description = "base secruity group for django clone db"
@@ -102,9 +113,6 @@ resource "aws_security_group" "django_clone" {
 #   from_port = 0
 #   to_port = 0
 # }
-
-
-
 
 resource "aws_security_group_rule" "packer_to_clone" {
   # this allows traffic from bastion to talk to the builder instances

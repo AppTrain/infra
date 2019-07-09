@@ -56,3 +56,12 @@ data "template_file" "user_data" {
               ntpq -pcrv
               EOF
 }
+
+
+# resource "aws_route53_record" "smp_db" {
+#   zone_id = "${data.aws_route53_zone.outside.id}"
+#   name    = "clonetest.build-ops.out.accuenplatform.com"
+#   type    = "A"
+#   ttl     = 300
+#   records = ["${aws_instance.smp_db.private_ip}"]
+# }
