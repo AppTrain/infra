@@ -1,6 +1,6 @@
 variable "rds_username" {
   description = "rds user name"
-  default = "django"
+  default = "accuen"
 }
 
 variable "rds_password" {
