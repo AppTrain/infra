@@ -31,3 +31,10 @@
       - docker-ce-cli 
       - containerd.io
     state: present
+
+- name: add user to docker group
+  user:
+    name: ubuntu
+    append: yes
+    groups: 
+      - docker
