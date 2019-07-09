@@ -1,11 +1,13 @@
-- name: packer ami
+- name: build environment configure
   hosts: tag_ansible_build_ops_buildenv
   become: True
   gather_facts: True
+  vars:
+    buildkite_token: "{{ vault_buildkite_token }}"
   tasks:
-    - name: install buildkite
+    - name: configure buildkite
       include_role:
-        name: buildkite-config    
+        name: buildkite_config    
 
     # - name: cloudwatch instance monitoring
     #   include_role:

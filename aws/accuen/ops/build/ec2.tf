@@ -7,7 +7,7 @@ resource "aws_instance" "builder" {
     "${aws_security_group.builder.id}",
   ]
   
-  key_name  = "annalect-buildenv-build-ops-ansible"
+  key_name  = "${aws_key_pair.builder.key_name}"
   subnet_id = "${data.aws_subnet.selected.id}"
 
   # lifecycle {
