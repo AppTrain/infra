@@ -9,7 +9,8 @@ variable "rds_password" {
 
 data "aws_db_snapshot" "django" {
   db_instance_identifier = "django"
-  db_snapshot_identifier = "rds:django-2019-07-08-06-39"
+  #db_snapshot_identifier = "rds:django-2019-07-08-06-39"
+  most_recent = true
 }
 
 module "django_clone" {
@@ -54,7 +55,7 @@ resource "aws_security_group" "packer_to_clone" {
   vpc_id      = "${data.aws_vpc.selected.id}"
 
   tags = {
-    Name = "packer_${var.env}"
+    Name = "packer-${var.env}"
     env  = "${var.env}"
   }
 }
@@ -116,9 +117,9 @@ resource "aws_security_group" "django_clone" {
 
 resource "aws_security_group_rule" "packer_to_clone" {
   # this allows traffic from bastion to talk to the builder instances
-  security_group_id = "${aws_security_group.django_clone.id}"
-  source_security_group_id = "${aws_security_group.packer_to_clone.id}"
-  type = "ingress"
+  security_group_id = "${aws_security_group.packer_to_clone.id}"
+  source_security_group_id = "${aws_security_group.django_clone.id}"
+  type = "egress"
   protocol = "-1"
   from_port = 0
   to_port = 0
