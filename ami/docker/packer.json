@@ -15,7 +15,7 @@
         "ssh_interface": "private_ip",
         "ssh_bastion_host": "entrypoint.build-ops.out.accuenplatform.com",
         "ssh_bastion_username": "ubuntu",
-        "ssh_bastion_private_key_file": "~/.annalect/ssh/packer_smp",
+        "ssh_bastion_private_key_file": "~/.annalect/ssh/entrypoint",
         "ami_name": "annalect_docker {{timestamp}}",
         "associate_public_ip_address": "false",
         "vpc_filter": {
@@ -40,7 +40,7 @@
         },
         "security_group_filter": {
           "filters": {
-            "tag:Name": "annalect-buildenv-build-ops"
+            "tag:Name": "annalect_buildenv_build_ops"
           }
         },
         "launch_block_device_mappings": [
