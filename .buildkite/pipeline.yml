@@ -1,0 +1,4 @@
+steps:
+  - label: ":shell:"
+    commands:
+      - echo "hello world"
