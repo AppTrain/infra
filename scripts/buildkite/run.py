@@ -21,6 +21,7 @@ def repositories(owners=["accuenmedia"]):
         "infra",
         "apd",
         "docker-python",
+        "docker-ops-tools",
     ]
 
     for repo in g.get_user().get_repos():
