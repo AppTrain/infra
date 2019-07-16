@@ -43,3 +43,11 @@ module docker_ops_tools {
     description = "docker image containing ops tools"
     #topics = ["docker", "terraform", "ansible", "awscli"]
 }
+
+# TODO: this will not need a docker repo
+# module packer_build_env {
+#     source = "../../../../terraform-modules/repository"
+#     name = "packer-build-env"
+#     description = "create ami for build environment"
+#     topics = ["packer", "aws", "ami"]
+# }
