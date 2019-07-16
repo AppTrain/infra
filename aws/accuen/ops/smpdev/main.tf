@@ -14,3 +14,8 @@ provider "aws" {
 variable "env"{
   default = "build-ops-smp-dev"
 }
+
+resource "aws_key_pair" "smp" {
+  key_name   = "annalect_${var.env}_smp"
+  public_key = "${file("${pathexpand("~/.annalect/ssh/builder.pub")}")}"
+}
