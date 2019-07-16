@@ -20,6 +20,7 @@ def repositories(owners=["accuenmedia"]):
         "smp",
         "infra",
         "apd",
+        "docker-python",
     ]
 
     for repo in g.get_user().get_repos():
