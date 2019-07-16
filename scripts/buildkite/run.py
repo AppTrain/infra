@@ -22,7 +22,7 @@ def repositories(owners=["accuenmedia"]):
         "apd",
         "docker-python",
         "docker-ops-tools",
-        "packer-build-env",
+        "packer-buildenv",
     ]
 
     for repo in g.get_user().get_repos():
@@ -110,7 +110,8 @@ def wire_github_buildkite(org, repo, hook_url):
         repo.create_hook("web", dict(url=hook_url))
         print(f"{org}/{repo} hook created on github")
     else:
-        print(f"{org}/{repo} github hook ALREADY EXISTS :-)")
+        pass
+        #print(f"{org}/{repo} github hook ALREADY EXISTS :-)")
 
 
 def wire(repository):
