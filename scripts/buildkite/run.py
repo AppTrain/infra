@@ -16,7 +16,10 @@ def repositories(owners=["accuenmedia"]):
     g = Github(_github_token)
 
     valids = [
-        "entrypoint"
+        "entrypoint",
+        "smp",
+        "infra",
+        "apd",
     ]
 
     for repo in g.get_user().get_repos():
