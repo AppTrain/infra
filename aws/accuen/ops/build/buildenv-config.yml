@@ -7,7 +7,15 @@
   tasks:
     - name: configure buildkite
       include_role:
-        name: buildkite_config    
+        name: buildkite_config
+
+    # TODO: HACK FIX, ADD THIS TO ROlE
+    - name: add user to docker group
+      user:
+        name: buildkite-agent
+        append: yes
+        groups: 
+          - docker    
 
     # - name: cloudwatch instance monitoring
     #   include_role:
