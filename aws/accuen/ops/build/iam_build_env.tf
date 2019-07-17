@@ -87,6 +87,16 @@ data "aws_iam_policy_document" "build_env" {
     resources = ["*"]
   }
 
+  # ECR
+  statement {
+    effect = "Allow"
+    actions = [
+      "ecr:*",
+    ]
+    resources = ["*"]
+  }
+  
+
   # EC2
   statement {
     effect = "Allow"
