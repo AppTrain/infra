@@ -91,12 +91,13 @@ data "aws_iam_policy_document" "build_env" {
   statement {
     effect = "Allow"
     actions = [
-      "ec2:DescribeInstances",
-      "ec2:DescribeInstanceStatus",
-      "ec2:GetConsoleOutput",
-      "ec2:AssociateAddress",
-      "ec2:DescribeAddresses",
-      "ec2:DescribeSecurityGroups",
+      "ec2:*",
+      # "ec2:DescribeInstances",
+      # "ec2:DescribeInstanceStatus",
+      # "ec2:GetConsoleOutput",
+      # "ec2:AssociateAddress",
+      # "ec2:DescribeAddresses",
+      # "ec2:DescribeSecurityGroups",
     ]
 
     resources = ["*"]
