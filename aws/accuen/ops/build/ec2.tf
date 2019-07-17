@@ -1,12 +1,12 @@
 resource "aws_instance" "builder" {
   ami           = "${data.aws_ami.buildenv.image_id}"
   instance_type = "m5.xlarge"
-  count = "${var.builder_count}"
+  count         = "${var.builder_count}"
 
   vpc_security_group_ids = [
     "${aws_security_group.builder.id}",
   ]
-  
+
   key_name  = "${aws_key_pair.builder.key_name}"
   subnet_id = "${data.aws_subnet.selected.id}"
 
@@ -15,19 +15,19 @@ resource "aws_instance" "builder" {
   # }
 
   tags = {
-    Name        = "annalect_buildenv_${var.env}_${count.index}"
-    env         = "${var.env}"
-    ansible     = "${var.env}_buildenv"
+    Name    = "annalect_buildenv_${var.env}_${count.index}"
+    env     = "${var.env}"
+    ansible = "${var.env}_buildenv"
   }
 
   #user_data = "${data.template_file.user_data.rendered}"
   #iam_instance_profile = "${aws_iam_instance_profile.ec2_instance.name}"
   #associate_public_ip_address = false
 
-#   root_block_device = {
-#     volume_type = "gp2"
-#     volume_size = 32
-#   }
+  #   root_block_device = {
+  #     volume_type = "gp2"
+  #     volume_size = 32
+  #   }
 }
 
 # data "template_file" "user_data" {
