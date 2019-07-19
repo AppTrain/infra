@@ -1,4 +1,4 @@
-FROM annalect/python:3.7-ssh as build
+FROM 348194362585.dkr.ecr.us-west-2.amazonaws.com/python:ssh
 # anna is short for annalectual
 
 RUN groupadd anna && \ 
@@ -13,9 +13,3 @@ RUN chown -R anna:anna /home/anna
 USER anna
 ENTRYPOINT [ "ssh" ]
 #CMD [ "-L", "*:5432:somedb.build-ops.out.accuenplatform.com:5432", "bastion" ]
-
-
-# RUN mkdir /home/anna/.ssh && \
-#     mkdir /home/anna/.ssh-external && \
-#     echo "bindfs#/home/anna/.ssh-external /home/anna/.ssh fuse force-user=anna,foce-group=anna,perms=0700 0 0" >> /etc/fstab && \
-#     chown -R anna:anna /home/anna/.ssh-external

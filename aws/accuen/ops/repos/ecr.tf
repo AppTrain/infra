@@ -15,3 +15,13 @@ resource "aws_ecr_repository" "smp_deps" {
     description = "smp"
   }
 }
+
+resource "aws_ecr_repository" "tunnel" {
+  name = "ops/tunnel"
+  tags = {
+    Terraform = true
+    github    = "none"
+    description = "smp"
+    security    = "needs alternate solution"
+  }
+}
