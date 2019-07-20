@@ -2,3 +2,8 @@ steps:
   - label: ":shell:"
     commands:
       - echo "hello world"
+  
+  - label: "terraform plan ops/base"
+    command: cd aws/accuen/ops/base && terraform init && terraform plan
+    env:
+      AWS_DEFAULT_REGION: us-west-2
