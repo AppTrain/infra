@@ -124,7 +124,7 @@ data "aws_iam_policy_document" "build_env" {
     ]
 
     resources = [
-      "arn:aws:s3:::some-name*",
+      "arn:aws:s3:::com.annalect.dig.terraform*",
     ]
   }
 
