@@ -21,3 +21,10 @@
     #       - file: /var/log/syslog
     #         datetime_format: "%b %d %H:%M:%S"
     #         log_group_name: syslog
+
+    - name: copy
+      copy:
+        src: ~/.annalect/
+        dest: /var/lib/buildkite-agent
+        owner: buildkite-agent
+        mode: '0400'
