@@ -29,5 +29,23 @@
           dest: id_rsa.pub
         - src: buildkite
           dest: id_rsa
+
+    - name: operational keydir
+      file:
+        path: /var/lib/buildkite-agent/.annalect/ssh
+        state: directory
+        #mode: 0600
+
+    - name: operational keys
+      copy:
+        src: "~/.annalect/ssh/{{ item }}"
+        dest: "/var/lib/buildkite-agent/.annalect/ssh/{{ item }}"
+        mode: 0600
+      loop:
+        - builder
+        - builder.pub
+        - entrypoint
+        - entrypoint.pub
+        
   become: yes
   become_user: buildkite-agent
