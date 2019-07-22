@@ -128,6 +128,24 @@ data "aws_iam_policy_document" "build_env" {
     ]
   }
 
+  # R53
+  statement {
+    effect = "Allow"
+
+    # TODO: security review of necessary permissions
+    actions = [
+      "route53:*",
+      # "route53:ListHostedZones",
+      # "route53:ListTagsForResource",
+      # "route53:ListResourceRecords", 
+    ]
+
+    resources = [
+      #"arn:aws:route53:::*",
+      "*"
+    ]
+  }
+
   # LOGS
   statement {
     effect = "Allow"
