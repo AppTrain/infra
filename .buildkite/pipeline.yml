@@ -1,9 +1,14 @@
-steps:
-  - label: ":shell:"
-    commands:
-      - echo "hello world"
-  
+steps:  
   - label: "terraform plan ops/base"
     command: cd aws/accuen/ops/base && terraform init && terraform plan
     env:
       AWS_DEFAULT_REGION: us-west-2
+  
+  - label: ":docker: login"
+    command: eval $(aws ecr get-login --no-include-email)
+    env:
+      AWS_DEFAULT_REGION: us-west-2
+
+  - label: ":docker: build ops/tunnel"
+    command: cd containers/tunnel && make all
+  
