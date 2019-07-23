@@ -24,3 +24,7 @@ data "github_repository" "entrypoint" {
 data "github_repository" "buildenv" {
     name = "packer-buildenv"
 }
+
+data "github_repository" "smp_complications" {
+    name = "smp-complications"
+}
