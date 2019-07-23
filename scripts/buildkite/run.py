@@ -23,6 +23,7 @@ def repositories(owners=["accuenmedia"]):
         "docker-python",
         "docker-ops-tools",
         "packer-buildenv",
+        "smp-complications",
     ]
 
     for repo in g.get_user().get_repos():
