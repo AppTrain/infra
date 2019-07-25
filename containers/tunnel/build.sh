@@ -14,5 +14,5 @@ rm -rf $KEY_DIR
 if [ "$BUILDKITE" == "true" ]; then
     NOTIFY_DIR=/var/lib/buildkite-agent/slack #TODO: add to env config
     cd $NOTIFY_DIR
-    poetry run python notify.py
+    ~/.poetry/bin/poetry run python notify.py
 fi
