@@ -1,4 +1,4 @@
-set -euo pipefail
+set -eu
 
 postMessage="https://slack.com/api/chat.postMessage"
 
@@ -6,7 +6,6 @@ get_slack_token(){
     OUTPUT=$(aws secretsmanager get-secret-value --secret-id "build-ops/slack-token")
     TOKEN=$(echo $OUTPUT | jq -r '.SecretString | fromjson | .["build-ops-slack-token"]')
     echo $TOKEN
-    return 0
 }
 
 get_repo_msg(){

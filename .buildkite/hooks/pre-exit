@@ -1,2 +1,2 @@
-set -euo pipefail
+set -eu
 .buildkite/hooks/notify.sh
