@@ -9,7 +9,7 @@ get_slack_token(){
 }
 
 get_repo_msg(){
-    msg="*repo*: \`$BUILDKITE_PIPELINE_SLUG\` *branch*: \`$BUILDKITE_BRANCH\` *by*: \`$BUILDKITE_BUILD_CREATOR\`"
+    msg="*$BUILDKITE_COMMAND*\n*repo*: \`$BUILDKITE_PIPELINE_SLUG\` *branch*: \`$BUILDKITE_BRANCH\` *by*: \`$BUILDKITE_BUILD_CREATOR\`"
     json=$(jq -n --arg msg "$msg" '{type: "section", text: {type: "mrkdwn", text: $msg}}')
     echo $json
 }
