@@ -10,5 +10,5 @@ steps:
       AWS_DEFAULT_REGION: us-west-2
 
   - label: ":docker: build ops/tunnel"
-    command: cd containers/tunnel && make all
+    command: cd containers/tunnel && build.sh
   
