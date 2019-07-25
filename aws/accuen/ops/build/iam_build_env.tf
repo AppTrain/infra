@@ -32,7 +32,7 @@ data "aws_iam_policy_document" "build_env" {
     ]
     resources = [
       # TODO: Can this be tightened by env? or something else?
-      "arn:aws:secretsmanager::${data.aws_caller_identity.this.account_id}:secret:*",
+      "arn:aws:secretsmanager:us-west-2:${data.aws_caller_identity.this.account_id}:secret:*",
     ]
   }
 
