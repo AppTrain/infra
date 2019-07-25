@@ -1,14 +1,7 @@
 FROM 348194362585.dkr.ecr.us-west-2.amazonaws.com/python:ssh
-# anna is short for annalectual
-
-RUN groupadd anna && \ 
-    useradd -g anna anna && \
-    mkdir -p /home/anna/.ssh 
     
-COPY keys/entrypoint /home/anna/.ssh/entrypoint
-COPY ssh.config /home/anna/.ssh/config
-RUN chown -R anna:anna /home/anna
+COPY keys/entrypoint /root/.annalect/ssh/entrypoint
+COPY ssh.config /root/.ssh/config
 
-USER anna
-ENTRYPOINT [ "ssh" ]
-#CMD [ "-L", "*:5432:somedb.build-ops.out.accuenplatform.com:5432", "bastion" ]
+EXPOSE 1-65535
+CMD ssh -N -L *:$LOCAL_PORT:$REMOTE_HOST:$REMOTE_PORT bastion
