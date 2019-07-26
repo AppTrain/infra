@@ -4,4 +4,4 @@ COPY keys/entrypoint /root/.annalect/ssh/entrypoint
 COPY ssh.config /root/.ssh/config
 
 EXPOSE 1-65535
-CMD ssh -N -L *:$LOCAL_PORT:$REMOTE_HOST:$REMOTE_PORT bastion
+CMD ssh -v -N -L *:$LOCAL_PORT:$REMOTE_HOST:$REMOTE_PORT bastion
