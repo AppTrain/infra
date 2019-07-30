@@ -13,4 +13,4 @@ steps:
     command: cd containers/tunnel && ./build.sh 
 
   - label: ":docker: build ops/pgcli"
-    command: cd containers/tunnel && ./build.sh
+    command: cd containers/pgcli && ./build.sh
