@@ -25,3 +25,12 @@ resource "aws_ecr_repository" "tunnel" {
     security    = "needs alternate solution"
   }
 }
+
+resource "aws_ecr_repository" "pgcli" {
+  name = "ops/pgcli"
+  tags = {
+    Terraform = true
+    github    = "none"
+    description = "pgcli"
+  }
+}
