@@ -1,6 +1,6 @@
 steps:  
   - label: "terraform plan ops/base"
-    command: cd aws/accuen/ops/base && terraform init && terraform plan -detailed-exit-code
+    command: cd aws/accuen/ops/base && terraform init && terraform plan -detailed-exitcode
     # -out=path ? add plan file to artifact?
     env:
       AWS_DEFAULT_REGION: us-west-2
