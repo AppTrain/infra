@@ -24,6 +24,7 @@ def repositories(owners=["accuenmedia"]):
         "docker-ops-tools",
         "packer-buildenv",
         "smp-complications",
+        "airflow",
     ]
 
     for repo in g.get_user().get_repos():

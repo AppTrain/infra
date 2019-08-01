@@ -34,3 +34,21 @@ resource "aws_ecr_repository" "pgcli" {
     description = "pgcli"
   }
 }
+
+resource "aws_ecr_repository" "airflow_base" {
+  name = "airflow/base"
+  tags = {
+    Terraform = true
+    github    = "https://github.com/accuenmedia/airflow"
+    description = "airflow base"
+  }
+}
+
+resource "aws_ecr_repository" "airflow" {
+  name = "airflow/airflow"
+  tags = {
+    Terraform = true
+    github    = "https://github.com/accuenmedia/airflow"
+    description = "airflow"
+  }
+}
