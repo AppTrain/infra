@@ -1,9 +1,3 @@
 steps:  
-  - label: "terraform plan ops/base"
-    command: cd aws/accuen/ops/base && ./build.sh 
-
-  - label: ":docker: build ops/tunnel"
-    command: cd containers/tunnel && ./build.sh 
-
-  - label: ":docker: build ops/pgcli"
-    command: cd containers/pgcli && ./build.sh
+  - label: "infra ci"
+    command: ./build.sh 
