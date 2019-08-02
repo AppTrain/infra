@@ -13,9 +13,10 @@ echo "--- :terraform: aws/accuen/ops/base"
 cd aws/accuen/ops/base && ./build.sh
 cd $BUILD_CONTEXT
 
-echo "--- :terraform: aws/accuen/ops/build"
-cd aws/accuen/ops/build && ./plan.sh
-cd $BUILD_CONTEXT
+# echo "--- :terraform: aws/accuen/ops/build"
+# cd aws/accuen/ops/build && ./plan.sh
+# cd $BUILD_CONTEXT
+# TODO: fix permissions indicated in https://buildkite.com/accuenmedia/infra/builds/47#8b265f64-1db0-4fe4-9fb9-80c4cfd3c8b8
 
 echo "--- :docker: build & push containers/tunnel"
 cd containers/tunnel && ./build.sh
