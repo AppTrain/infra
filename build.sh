@@ -22,7 +22,7 @@ echo "--- :docker: build & push containers/tunnel"
 cd containers/tunnel && ./build.sh
 cd $BUILD_CONTEXT
 
-echo "--- :docker: build & push containers/tunnel"
+echo "--- :docker: build & push containers/pgcli"
 cd containers/pgcli && ./build.sh
 cd $BUILD_CONTEXT 
 
