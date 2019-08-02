@@ -14,7 +14,7 @@ cd aws/accuen/ops/base && ./build.sh
 cd $BUILD_CONTEXT
 
 echo "--- :terraform: aws/accuen/ops/build"
-cd aws/accuen/ops/build && terraform plan -detailed-exitcode
+cd aws/accuen/ops/build && ./plan.sh
 cd $BUILD_CONTEXT
 
 echo "--- :docker: build & push containers/tunnel"

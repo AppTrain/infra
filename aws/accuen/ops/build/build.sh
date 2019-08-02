@@ -1,3 +1,5 @@
+#!/bin/bash
+
 set -eu
 
 terraform apply -auto-approve
