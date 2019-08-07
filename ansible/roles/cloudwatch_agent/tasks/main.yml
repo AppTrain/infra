@@ -1,0 +1,21 @@
+---
+
+- name: install cloudwatch agent
+  apt:
+    deb: https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
+
+- name: Create logstream configuration
+  template:
+    src: awslogs_config.j2
+    dest: /var/awslogs/etc/config/logs
+    owner: root
+    group: root
+    mode: 0600
+  notify: restart awslogs
+
+- name: Start and enable awslogs systemd service
+  systemd: 
+    name: awslogs 
+    state: started 
+    enabled: yes 
+    daemon_reload: yes
