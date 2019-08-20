@@ -10,8 +10,7 @@ echo "--- use :aws: cli to :docker: login to :ecr:"
 eval $(aws ecr get-login --no-include-email)
 
 echo "--- :terraform: aws/accuen/ops/base"
-cd aws/accuen/ops/base && ./build.sh
-cd $BUILD_CONTEXT
+cd $BUILD_CONTEXT/aws/accuen/ops/base && ./build.sh
 
 # echo "--- :terraform: aws/accuen/ops/build"
 # cd aws/accuen/ops/build && ./plan.sh
@@ -19,12 +18,10 @@ cd $BUILD_CONTEXT
 # TODO: fix permissions indicated in https://buildkite.com/accuenmedia/infra/builds/47#8b265f64-1db0-4fe4-9fb9-80c4cfd3c8b8
 
 echo "--- :docker: build & push containers/tunnel"
-cd containers/tunnel && ./build.sh
-cd $BUILD_CONTEXT
+cd $BUILD_CONTEXT/containers/tunnel && ./build.sh
 
 echo "--- :docker: build & push containers/pgcli"
-cd containers/pgcli && ./build.sh
-cd $BUILD_CONTEXT 
+cd $BUILD_CONTEXT/containers/pgcli && ./build.sh
 
 echo "+++ the ending"
 function inline_image {
