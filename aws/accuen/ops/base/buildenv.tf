@@ -8,6 +8,6 @@ module "this_buildenv" {
     access_ips = [
         "104.136.141.97/32", # jeremiah work office
         "45.30.144.158/32", # jeremiah home office
-        "50.247.125.19/32", # eman coffee shop
+        "71.143.194.189/32", # eman home
     ]  
 }
