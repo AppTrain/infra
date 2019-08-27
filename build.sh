@@ -12,6 +12,9 @@ eval $(aws ecr get-login --no-include-email)
 echo "--- :terraform: aws/accuen/ops/base"
 cd $BUILD_CONTEXT/aws/accuen/ops/base && ./build.sh
 
+echo "--- :terraform: aws/accuen/dev1"
+cd $BUILD_CONTEXT/aws/accuen/dev1 && ./build.sh
+
 # echo "--- :terraform: aws/accuen/ops/build"
 # cd aws/accuen/ops/build && ./plan.sh
 # cd $BUILD_CONTEXT

@@ -9,5 +9,6 @@ module "this_buildenv" {
         "104.136.141.97/32", # jeremiah work office
         "45.30.144.158/32", # jeremiah home office
         "71.143.194.189/32", # eman home
+        "73.42.71.80/32", # Jason Home
     ]  
 }
