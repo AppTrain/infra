@@ -22,6 +22,7 @@ def repositories(owners=["accuenmedia"]):
         "apd",
         "docker-python",
         "docker-ops-tools",
+        "packer-analyticsenv",
         "packer-buildenv",
         "packer-bastion",
         "smp-complications",
