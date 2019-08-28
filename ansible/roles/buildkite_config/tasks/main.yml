@@ -46,6 +46,8 @@
         - builder.pub
         - entrypoint
         - entrypoint.pub
+        - dev1_bastion
+        - dev1_bastion.pub
         
   become: yes
   become_user: buildkite-agent
