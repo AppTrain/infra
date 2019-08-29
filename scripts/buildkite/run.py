@@ -27,6 +27,8 @@ def repositories(owners=["accuenmedia"]):
         "packer-bastion",
         "smp-complications",
         "airflow",
+        "art",
+        "tfm",
     ]
 
     for repo in g.get_user().get_repos():
