@@ -7,6 +7,19 @@ resource "aws_iam_policy" "build_env" {
 
 data "aws_iam_policy_document" "build_env" {
 
+  # IAM
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "iam:GetRole",
+    ]
+
+    resources = [
+      "arn:aws:iam::${data.aws_caller_identity.this.account_id}:*",
+    ]
+  }
+
   # SSM 
   statement {
     effect = "Allow"
