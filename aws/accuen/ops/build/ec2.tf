@@ -26,7 +26,7 @@ resource "aws_instance" "builder" {
 
     root_block_device {
       volume_type = "gp2"
-      volume_size = 250
+      volume_size = 500
     }
 }
 

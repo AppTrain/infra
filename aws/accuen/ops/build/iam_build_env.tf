@@ -12,11 +12,24 @@ data "aws_iam_policy_document" "build_env" {
     effect = "Allow"
 
     actions = [
-      "iam:GetRole",
+      "iam:Get*"
     ]
 
     resources = [
       "arn:aws:iam::${data.aws_caller_identity.this.account_id}:*",
+    ]
+  }
+
+  # LAMBDA
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "lambda:*",
+    ]
+
+    resources = [
+      "arn:aws:lambda::${data.aws_caller_identity.this.account_id}:*",
     ]
   }
 
