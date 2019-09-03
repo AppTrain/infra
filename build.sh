@@ -26,8 +26,8 @@ cd $BUILD_CONTEXT/containers/tunnel && ./build.sh
 echo "--- :docker: build & push containers/pgcli"
 cd $BUILD_CONTEXT/containers/pgcli && ./build.sh
 
-echo "--- :packer: build ubuntu bionic"
-cd $BUILD_CONTEXT/ami/ubuntu1804 && packer build bionic.json
+# echo "--- :packer: build ubuntu bionic"
+# cd $BUILD_CONTEXT/ami/ubuntu1804 && packer build bionic.json
 
 echo "+++ the ending"
 function inline_image {
