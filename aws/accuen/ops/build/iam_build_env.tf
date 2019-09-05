@@ -12,7 +12,7 @@ data "aws_iam_policy_document" "build_env" {
     effect = "Allow"
 
     actions = [
-      "iam:Get*"
+      "iam:*"
     ]
 
     resources = [
@@ -28,9 +28,9 @@ data "aws_iam_policy_document" "build_env" {
       "lambda:*",
     ]
 
-    resources = [
-      "arn:aws:lambda::${data.aws_caller_identity.this.account_id}:*",
-    ]
+    resources = ["*"]
+    #  "arn:aws:lambda::${data.aws_caller_identity.this.account_id}:*",
+    #]
   }
 
   # SSM 
