@@ -1,8 +1,16 @@
 ---
 # handlers
 
+# - name: restart buildkite-agent
+#   become: yes
+#   service:
+#     name: "buildkite-agent"
+#     state: restarted
+
 - name: restart buildkite-agent
   become: yes
-  service:
-    name: "buildkite-agent"
+  systemd:
+    name: buildkite-agent@{{ item }}
     state: restarted
+    daemon_reload: yes
+  loop: "{{ [1, 2, 3, 4] }}"
