@@ -54,21 +54,21 @@ module "this_vpc" {
     PathName = "annalect-${local.env}-private-route-table"
   }
 
-  # ##########################################################################
-  # Database Subnets
+ # ###########################################################################
+ # Database Subnets
 
-#   create_database_subnet_group = true
-#   database_subnets = ["10.0.3.0/24", "10.0.4.0/24"]
+  create_database_subnet_group = true
+  database_subnets = ["10.0.34.0/24", "10.0.37.0/24"]
 
-#   database_subnet_tags = {
-#     Name        = "accuen-${local.env}-db-subnet"
-#     Environment = "${local.env}"
-#   }
+  database_subnet_tags = {
+    Name        = "accuen-${local.env}-db-subnet"
+    Environment = "${local.env}"
+  }
 
-#   database_subnet_group_tags = {
-#     Name        = "accuen-${local.env}-db-subnet-group"
-#     Environment = "${local.env}"
-#   }
+  database_subnet_group_tags = {
+    Name        = "accuen-${local.env}-db-subnet-group"
+    Environment = "${local.env}"
+  }
 
   # ##########################################################################
   # Public Subnets
