@@ -43,3 +43,13 @@ resource "aws_ecr_repository" "airflow" {
     description = "airflow base"
   }
 }
+
+
+resource "aws_ecr_repository" "art" {
+  name = "art"
+  tags = {
+    Terraform = true
+    github    = "https://github.com/accuenmedia/art"
+    description = "audience real time"
+  }
+}
