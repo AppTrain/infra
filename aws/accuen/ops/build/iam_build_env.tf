@@ -151,6 +151,7 @@ data "aws_iam_policy_document" "build_env" {
 
     resources = [
       "arn:aws:s3:::com.annalect.dig.terraform*",
+      "arn:aws:s3:::com.annalect.dig.artifacts*",
     ]
   }
 
