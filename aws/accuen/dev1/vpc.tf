@@ -1,16 +1,26 @@
 
-# data "aws_vpc" "default" {
-#   default = true
-# }
+data "aws_vpc" "default" {
+  id = "vpc-4a83e62f" # existing default vpc for accuen account
+}
 
-# data "aws_subnet_ids" "all" {
-#   vpc_id = data.aws_vpc.default.id
-# }
+resource "aws_vpc_peering_connection" "connect_to_default" {
+  peer_vpc_id   = "${data.aws_vpc.default.id}"
+  vpc_id        = "${module.this_vpc.vpc_id}"
+  auto_accept   = true
 
-# data "aws_security_group" "default" {
-#   vpc_id = data.aws_vpc.default.id
-#   name   = "default"
-# }
+  accepter {
+    allow_remote_vpc_dns_resolution = true
+  }
+
+  requester {
+    allow_remote_vpc_dns_resolution = true
+  }
+
+  tags = {
+    Name = "peering_connection_to_default_vpc"
+    env  = "dev1"
+  }
+}
 
 module "this_vpc" {
   source = "terraform-aws-modules/vpc/aws"
