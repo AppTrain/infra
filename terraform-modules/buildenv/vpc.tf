@@ -19,7 +19,7 @@ module "this_vpc" {
   # Base 
 
   name = "accuen-${var.env}-vpc"
-  cidr = "10.0.0.0/16"
+  cidr = "10.42.0.0/16"
   azs  = "${var.vpc_azs}"
 
   # ##########################################################################
@@ -37,7 +37,7 @@ module "this_vpc" {
   # ##########################################################################
   # Private Subnets 
 
-  private_subnets      = ["10.0.12.0/24", "10.0.13.0/24"]
+  private_subnets      = ["10.42.1.0/24", "10.42.2.0/24"]
   
   private_subnet_tags = {
     isPublic = "false"
@@ -53,7 +53,7 @@ module "this_vpc" {
   # Database Subnets
 
 #   create_database_subnet_group = true
-#   database_subnets = ["10.0.3.0/24", "10.0.4.0/24"]
+#   database_subnets = ["10.42.3.0/24", "10.42.4.0/24"]
 
 #   database_subnet_tags = {
 #     Name        = "accuen-${var.env}-db-subnet"
@@ -68,7 +68,7 @@ module "this_vpc" {
   # ##########################################################################
   # Public Subnets
 
-  public_subnets = ["10.0.15.0/24", "10.0.16.0/24"]
+  public_subnets = ["10.42.5.0/24", "10.42.6.0/24"]
 
   public_subnet_tags = {
     isPublic = "true"
