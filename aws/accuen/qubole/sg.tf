@@ -27,7 +27,7 @@ resource "aws_security_group_rule" "qubole_bastion_inbound" {
 resource "aws_security_group_rule" "qubole_7000_inbound" {
   # this is some unknown port needed to make qubole run.
   # security note: what is run on this port and how is it authenticated
-  # and authorized? 
+  # and authorized?
   security_group_id = "${aws_security_group.qubole_bastion.id}"
 
   type     = "ingress"

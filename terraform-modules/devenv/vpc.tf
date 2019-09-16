@@ -16,7 +16,7 @@ module "this_vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
   # ##########################################################################
-  # Base 
+  # Base
 
   name = "accuen-${var.env}-vpc"
   cidr = "10.0.0.0/16"
@@ -35,7 +35,7 @@ module "this_vpc" {
   }
 
   # ##########################################################################
-  # Private Subnets 
+  # Private Subnets
 
   private_subnets = ["10.0.22.0/24", "10.0.23.0/24"]
 
@@ -89,4 +89,3 @@ module "this_vpc" {
     Environment = "${var.env}"
   }
 }
-

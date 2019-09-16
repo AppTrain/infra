@@ -9,7 +9,7 @@ variable "rds_password" {
 # data "aws_db_snapshot" "db_snapshot" {
 #   # https://www.terraform.io/docs/providers/aws/d/db_snapshot.html
 #   # How this will be configured should be easiest thing that works
-#   # but may take some changes and more testing when implementing 
+#   # but may take some changes and more testing when implementing
 #   # with production
 #   db_instance_identifier = "annalect-dig-${var.env}"
 #   db_snapshot_identifier = "annalect-dig-${var.env}-orig"

@@ -9,7 +9,7 @@ RUN apt-get update -yqq \
     && apt-get install -yqq --no-install-recommends curl \
     && apt-get autoremove -yqq --purge \
     && apt-get clean \
-    && curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python 
+    && curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
     # && pip3 install virtualenv
 
 #RUN which python && which python3

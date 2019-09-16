@@ -2,7 +2,7 @@
 
 - name: Install Base Packages
   apt:
-    pkg: 
+    pkg:
       - apt-transport-https
       - ca-certificates
       - curl

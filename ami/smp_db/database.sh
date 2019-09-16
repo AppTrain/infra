@@ -1,4 +1,4 @@
-set -e 
+set -e
 
 echo "*****************"
 echo "$PACKER_BUILD_NAME -- SMP DJANGO CLONE"

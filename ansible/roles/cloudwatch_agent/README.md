@@ -13,7 +13,7 @@ Role Variables
 - `awslogs_config`: list of log files to monitor
 
     Example:
-    
+
         awslogs_config:
           - file: /var/log/syslog
             datetime_format: "%b %d %H:%M:%S"

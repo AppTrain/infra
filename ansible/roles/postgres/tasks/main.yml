@@ -3,7 +3,7 @@
 
 - name: install required packages
   apt:
-    pkg: 
+    pkg:
       - curl
       - ca-certificates
     state: latest
@@ -13,7 +13,7 @@
   set_fact:
     pg_version: 10
     pg_key: http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc
-    
+
 - name: install apt repo from postgres
   include_tasks: repo.yml
 
@@ -23,7 +23,7 @@
       - "postgresql-{{ pg_version }}"
       - "postgresql-client-{{ pg_version }}"
       - python3-psycopg2
-      - python3-postgresql 
+      - python3-postgresql
     state: latest
     update_cache: true
 

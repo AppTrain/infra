@@ -1,4 +1,4 @@
-set -e 
+set -e
 DEBIAN_FRONTEND=noninteractive
 sleep 5
 mkdir ~/Downloads
@@ -11,7 +11,7 @@ QUERY='.assets[] | select(.name | contains("Linux-64bit.deb") and (contains("ext
 meta=$( curl $LATEST | jq "$QUERY" )
 name=$(echo $meta | jq '.name' | tr -d '"')
 url=$(echo $meta | jq '.url' | tr -d '"')
-cd ~/Downloads 
-curl -L -o $name $url 
+cd ~/Downloads
+curl -L -o $name $url
 dpkg-deb --info $name
 sudo dpkg -i $name

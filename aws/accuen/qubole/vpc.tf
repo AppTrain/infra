@@ -2,7 +2,7 @@ module "qubole_vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
   # ##########################################################################
-  # Base 
+  # Base
 
   name = "accuen-${var.env}-vpc"
   cidr = "10.43.0.0/16"
@@ -21,7 +21,7 @@ module "qubole_vpc" {
   }
 
   # ##########################################################################
-  # Private Subnets 
+  # Private Subnets
 
   private_subnets = ["10.43.1.0/24", "10.43.2.0/24"]
 
@@ -75,4 +75,3 @@ module "qubole_vpc" {
     Environment = "${var.env}"
   }
 }
-

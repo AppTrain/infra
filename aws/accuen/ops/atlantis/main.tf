@@ -18,7 +18,7 @@ module "atlantis" {
   # DNS (without trailing dot)
   route53_zone_name = "build-ops.out.accuenplatform.com"
 
-  # ACM (SSL certificate) - 
+  # ACM (SSL certificate) -
   # Specify ARN of an existing certificate or
   # new one will be created and validated using Route53 DNS
   # certificate_arn = "arn:aws:acm:eu-west-1:135367859851:certificate/70e008e1-c0e1-4c7e-9670-7bb5bd4f5a84"

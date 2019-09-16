@@ -12,7 +12,7 @@
     # - name: cloudwatch instance monitoring
     #   include_role:
     #     name: cloudwatch
-    
+
     # - name: aws logs
     #   include_role:
     #     name: awslogs

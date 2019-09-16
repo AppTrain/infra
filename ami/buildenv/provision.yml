@@ -4,9 +4,9 @@
   gather_facts: True
   tasks:
     - name: install docker
-      include_role: 
+      include_role:
         name: docker
-    
+
     - name: install postgres
       include_role:
         name: postgres
@@ -14,14 +14,14 @@
     - name: install buildkite
       include_role:
         name: buildkite
-        
-    - name: python3 
+
+    - name: python3
       apt:
         pkg:
           - python3
           - python3-pip
         state: present
-    
+
     - name: meta ansible
       pip:
         name: ansible
@@ -30,7 +30,7 @@
     # - name: cloudwatch instance monitoring
     #   include_role:
     #     name: cloudwatch
-    
+
     # - name: aws logs
     #   include_role:
     #     name: awslogs

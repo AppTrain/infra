@@ -3,11 +3,11 @@
   become: True
   gather_facts: True
   tasks:
-        
+
     - name: install docker
-      include_role: 
+      include_role:
         name: docker
-    
+
     - name: postgres up
       include_role:
         name: postgres
@@ -15,7 +15,7 @@
     # - name: cloudwatch instance monitoring
     #   include_role:
     #     name: cloudwatch
-    
+
     # - name: aws logs
     #   include_role:
     #     name: awslogs
@@ -24,4 +24,3 @@
     #       - file: /var/log/syslog
     #         datetime_format: "%b %d %H:%M:%S"
     #         log_group_name: syslog
-

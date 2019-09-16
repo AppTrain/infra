@@ -13,7 +13,7 @@ data "aws_ami" "ubuntu_1804" {
     values = ["hvm"]
   }
 
-  owners = ["099720109477"] # canonical 
+  owners = ["099720109477"] # canonical
 }
 
 data "aws_ami" "qubole_bastion" {

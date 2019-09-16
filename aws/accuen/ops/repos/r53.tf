@@ -6,7 +6,7 @@
 # could not find data source to grab just domain,
 # just setting variable for now.
 # variable "registry_host" {
-#     default = "348194362585.dkr.ecr.us-west-2.amazonaws.com" 
+#     default = "348194362585.dkr.ecr.us-west-2.amazonaws.com"
 # }
 
 # data "aws_route53_zone" "main" {

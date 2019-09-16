@@ -6,11 +6,11 @@ variable "user_path" {
 #     users = "${[for m in data.github_team.accuen.members : lower(m['name'])]}"
 # }
 
-## WAITING 
+## WAITING
 ## https://github.com/hashicorp/terraform/issues/17179
 
 /*
-RANDOM IDEA - 
+RANDOM IDEA -
 When the above is implemented it will be easy to propagate user level
 data from github to other services. Removing user from github team would
 have cascading effects across these other services.

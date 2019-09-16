@@ -1,3 +1,3 @@
-steps:  
+steps:
   - label: "infra ci"
-    command: ./build.sh 
+    command: ./build.sh

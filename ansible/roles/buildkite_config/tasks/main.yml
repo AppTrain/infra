@@ -1,16 +1,16 @@
 ---
 
 - name: Configure buildkite agent
-  lineinfile: 
-    dest: /etc/buildkite-agent/buildkite-agent.cfg 
-    regexp: ^token= 
+  lineinfile:
+    dest: /etc/buildkite-agent/buildkite-agent.cfg
+    regexp: ^token=
     line: "token={{ buildkite_token }}"
   notify:
     - restart buildkite-agent
 
 - block:
     - name: ensure buildkite-agent user is present
-      user: 
+      user:
         name: "buildkite-agent"
         state: present
 
@@ -18,11 +18,11 @@
       file:
         path: /var/lib/buildkite-agent/.ssh
         state: directory
-    
+
     - name: buildkite key for github
-      copy: 
+      copy:
         src: "~/.annalect/ssh/{{ item['src'] }}"
-        dest: "/var/lib/buildkite-agent/.ssh/{{ item['dest'] }}" 
+        dest: "/var/lib/buildkite-agent/.ssh/{{ item['dest'] }}"
         mode: 0600
       loop:
         - src: buildkite.pub
@@ -48,6 +48,6 @@
         - entrypoint.pub
         - dev1_bastion
         - dev1_bastion.pub
-        
+
   become: yes
   become_user: buildkite-agent

@@ -4,13 +4,12 @@ import requests
 from github import Github
 
 _buildkite_token = os.environ["BUILDKITE_TOKEN"]
-_github_token = os.environ['GITHUB_TOKEN']
+_github_token = os.environ["GITHUB_TOKEN"]
 _buildkite_api = "https://api.buildkite.com/v2"
-_buildkite_headers = {
-    "Authorization": "Bearer {token}".format(token=_buildkite_token)
-}
+_buildkite_headers = {"Authorization": "Bearer {token}".format(token=_buildkite_token)}
 
 Repo = namedtuple("Repo", ("owner", "name", "url"))
+
 
 def repositories(owners=["accuenmedia"]):
     g = Github(_github_token)
@@ -38,7 +37,7 @@ def repositories(owners=["accuenmedia"]):
             continue
 
         if repo.name not in valids:
-            #hacking, remove later
+            # hacking, remove later
             continue
 
         owner = repo.owner.login
@@ -118,7 +117,7 @@ def wire_github_buildkite(org, repo, hook_url):
         print(f"{org}/{repo} hook created on github")
     else:
         pass
-        #print(f"{org}/{repo} github hook ALREADY EXISTS :-)")
+        # print(f"{org}/{repo} github hook ALREADY EXISTS :-)")
 
 
 def wire(repository):
@@ -138,6 +137,7 @@ def wire_all():
         #     wire(repository)
         # except Exception as e:
         #     print(f"FAILED !!!!!!!!!! {e}")
+
 
 if __name__ == "__main__":
     wire_all()

@@ -2,7 +2,7 @@
 
 - name: Install Base Packages
   apt:
-    pkg: 
+    pkg:
       - apt-transport-https
       - ca-certificates
       - curl
@@ -27,8 +27,8 @@
 - name: install docker
   apt:
     pkg:
-      - docker-ce 
-      - docker-ce-cli 
+      - docker-ce
+      - docker-ce-cli
       - containerd.io
     state: present
 
@@ -36,5 +36,5 @@
   user:
     name: ubuntu
     append: yes
-    groups: 
+    groups:
       - docker

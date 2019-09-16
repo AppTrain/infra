@@ -33,7 +33,7 @@ data "aws_iam_policy_document" "build_env" {
     #]
   }
 
-  # SSM 
+  # SSM
   statement {
     effect = "Allow"
 
@@ -164,7 +164,7 @@ data "aws_iam_policy_document" "build_env" {
       "route53:*",
       # "route53:ListHostedZones",
       # "route53:ListTagsForResource",
-      # "route53:ListResourceRecords", 
+      # "route53:ListResourceRecords",
     ]
 
     resources = [

@@ -5,11 +5,11 @@
   tasks:
 
     # it takes a minute for apt-get and
-    # some other network resources to 
+    # some other network resources to
     # start working
     - pause:
         minutes: 1
-    
+
     - name: install base packages
       apt:
         pkg:
@@ -17,7 +17,7 @@
           - python3-pip
         state: present
         update_cache: yes
-    
+
     - name: make python link
       file:
         src: /usr/bin/python3
@@ -25,7 +25,7 @@
         owner: root
         group: root
         state: link
-    
+
     # - name: install cloudwatch_agent
     #   include_role:
     #     name: cloudwatch_agent
@@ -34,9 +34,8 @@
     #       - file: /var/log/syslog
     #         datetime_format: "%b %d %H:%M:%S"
     #         log_group_name: syslog
-    
+
     - name: Remove package cache, and deps no longer required
       apt:
         autoclean: yes
         autoremove: yes
-

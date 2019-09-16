@@ -4,7 +4,7 @@ export BUILD_CONTEXT=$(pwd)
 export AWS_DEFAULT_REGION=us-west-2
 
 echo "--- :shell: prepare build"
-echo 
+echo
 
 echo "--- use :aws: cli to :docker: login to :ecr:"
 eval $(aws ecr get-login --no-include-email)
