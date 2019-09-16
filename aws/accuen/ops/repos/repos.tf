@@ -2,29 +2,29 @@ data "github_team" "accuen" {
   slug = "accuen"
 }
 data "github_repository" "apd" {
-    name = "apd"
+  name = "apd"
 }
 
 data "github_repository" "smp" {
-    name = "smp"
+  name = "smp"
 }
 
 data "github_repository" "python" {
-    name = "docker-python"
+  name = "docker-python"
 }
 
 data "github_repository" "airflow" {
-    name = "airflow"
+  name = "airflow"
 }
 
 data "github_repository" "entrypoint" {
-    name = "entrypoint"
+  name = "entrypoint"
 }
 
 data "github_repository" "buildenv" {
-    name = "packer-buildenv"
+  name = "packer-buildenv"
 }
 
 data "github_repository" "smp_complications" {
-    name = "smp-complications"
+  name = "smp-complications"
 }

@@ -121,7 +121,7 @@ data "aws_iam_policy_document" "build_env" {
     ]
     resources = ["*"]
   }
-  
+
 
   # EC2
   statement {

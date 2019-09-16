@@ -20,19 +20,19 @@ module "this_vpc" {
 
   name = "${local.env}-vpc"
   cidr = "10.0.0.0/16"
-  azs  = [
-        "us-west-2a", 
-        "us-west-2b",
-        "us-west-2c",
-        "us-west-2d",
-    ]
+  azs = [
+    "us-west-2a",
+    "us-west-2b",
+    "us-west-2c",
+    "us-west-2d",
+  ]
 
   # ##########################################################################
   # --
 
-  enable_dns_support = true
+  enable_dns_support   = true
   enable_dns_hostnames = true
-  enable_nat_gateway = true
+  enable_nat_gateway   = true
   #dhcp_options
 
   nat_gateway_tags = {
@@ -42,8 +42,8 @@ module "this_vpc" {
   # ##########################################################################
   # Private Subnets 
 
-  private_subnets      = ["10.0.32.0/24", "10.0.33.0/24"]
-  
+  private_subnets = ["10.0.32.0/24", "10.0.33.0/24"]
+
   private_subnet_tags = {
     isPublic = "false"
     PathName = "annalect-${local.env}-private-subnet"
@@ -54,11 +54,11 @@ module "this_vpc" {
     PathName = "annalect-${local.env}-private-route-table"
   }
 
- # ###########################################################################
- # Database Subnets
+  # ###########################################################################
+  # Database Subnets
 
   create_database_subnet_group = true
-  database_subnets = ["10.0.34.0/24", "10.0.37.0/24"]
+  database_subnets             = ["10.0.34.0/24", "10.0.37.0/24"]
 
   database_subnet_tags = {
     Name        = "accuen-${local.env}-db-subnet"

@@ -1,5 +1,5 @@
 variable "github_token" {
-    description = "github user token"
+  description = "github user token"
 }
 
 

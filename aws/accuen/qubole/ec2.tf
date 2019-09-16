@@ -15,19 +15,19 @@ resource "aws_instance" "qubole_bastion" {
   }
 
   tags = {
-    Name        = "annalect-dig-bastion-${var.env}"
-    env         = "${var.env}"
-    ansible     = "${var.env}_bastion"
+    Name    = "annalect-dig-bastion-${var.env}"
+    env     = "${var.env}"
+    ansible = "${var.env}_bastion"
   }
 
   user_data = "${data.template_file.user_data.rendered}"
   #iam_instance_profile = "${aws_iam_instance_profile.ec2_instance.name}"
   #associate_public_ip_address = false
 
-#   root_block_device = {
-#     volume_type = "gp2"
-#     volume_size = 32
-#   }
+  #   root_block_device = {
+  #     volume_type = "gp2"
+  #     volume_size = 32
+  #   }
 }
 
 data "template_file" "user_data" {
@@ -44,6 +44,6 @@ data "template_file" "user_data" {
 }
 
 resource "aws_eip" "bastion" {
-    instance = "${aws_instance.qubole_bastion.id}"
-    vpc = true
+  instance = "${aws_instance.qubole_bastion.id}"
+  vpc      = true
 }

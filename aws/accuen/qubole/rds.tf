@@ -16,7 +16,7 @@ variable "rds_password" {
 # }
 
 resource "random_string" "unique_snapshot_id" {
-  length = 8
+  length  = 8
   special = false
 }
 
@@ -40,16 +40,16 @@ module "quboledb" {
   vpc_security_group_ids  = ["${aws_security_group.qubole_rds.id}"]
   subnet_ids              = "${module.qubole_vpc.private_subnets}"
   maintenance_window      = "Mon:00:00-Mon:03:00"
-  apply_immediately = true
+  apply_immediately       = true
   backup_window           = "03:00-06:00"
   backup_retention_period = 30
 
   # https://github.com/terraform-aws-modules/terraform-aws-rds/issues/136
   # waiting on resolution to bump that back to 30
-  monitoring_interval = 0 #30
-  monitoring_role_name = "RDSMonitoringRole-${var.env}"
+  monitoring_interval    = 0 #30
+  monitoring_role_name   = "RDSMonitoringRole-${var.env}"
   create_monitoring_role = true
-  skip_final_snapshot = false
+  skip_final_snapshot    = false
 
   publicly_accessible = false
 

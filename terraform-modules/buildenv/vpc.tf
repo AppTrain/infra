@@ -25,9 +25,9 @@ module "this_vpc" {
   # ##########################################################################
   # --
 
-  enable_dns_support = true
+  enable_dns_support   = true
   enable_dns_hostnames = true
-  enable_nat_gateway = true
+  enable_nat_gateway   = true
   #dhcp_options
 
   nat_gateway_tags = {
@@ -37,8 +37,8 @@ module "this_vpc" {
   # ##########################################################################
   # Private Subnets 
 
-  private_subnets      = ["10.0.12.0/24", "10.0.13.0/24"]
-  
+  private_subnets = ["10.0.12.0/24", "10.0.13.0/24"]
+
   private_subnet_tags = {
     isPublic = "false"
     PathName = "accuen-${var.env}-private-subnet"
@@ -52,18 +52,18 @@ module "this_vpc" {
   # ##########################################################################
   # Database Subnets
 
-#   create_database_subnet_group = true
-#   database_subnets = ["10.0.3.0/24", "10.0.4.0/24"]
+  #   create_database_subnet_group = true
+  #   database_subnets = ["10.0.3.0/24", "10.0.4.0/24"]
 
-#   database_subnet_tags = {
-#     Name        = "accuen-${var.env}-db-subnet"
-#     Environment = "${var.env}"
-#   }
+  #   database_subnet_tags = {
+  #     Name        = "accuen-${var.env}-db-subnet"
+  #     Environment = "${var.env}"
+  #   }
 
-#   database_subnet_group_tags = {
-#     Name        = "accuen-${var.env}-db-subnet-group"
-#     Environment = "${var.env}"
-#   }
+  #   database_subnet_group_tags = {
+  #     Name        = "accuen-${var.env}-db-subnet-group"
+  #     Environment = "${var.env}"
+  #   }
 
   # ##########################################################################
   # Public Subnets

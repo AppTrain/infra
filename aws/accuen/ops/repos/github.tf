@@ -1,6 +1,6 @@
 provider "github" {
   organization = "accuenmedia"
-  version = "2.1"
+  version      = "2.1"
 }
 
 resource "github_user_ssh_key" "buildkite" {

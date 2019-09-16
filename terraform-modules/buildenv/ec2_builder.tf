@@ -6,7 +6,7 @@
 #   vpc_security_group_ids = [
 #     "${aws_security_group.builder.id}",
 #   ]
-  
+
 #   key_name  = "${aws_key_pair.ansible.key_name}"
 #   subnet_id = "${module.this_vpc.private_subnets[0]}"
 

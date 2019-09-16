@@ -1,5 +1,5 @@
 data "aws_route53_zone" "outside" {
-  name         = "build-ops.out.accuenplatform.com."
+  name = "build-ops.out.accuenplatform.com."
 }
 
 resource "aws_route53_record" "builder" {
@@ -8,5 +8,5 @@ resource "aws_route53_record" "builder" {
   type    = "A"
   ttl     = 300
   records = ["${aws_instance.builder[count.index].private_ip}"]
-  count = "${var.builder_count}"
+  count   = "${var.builder_count}"
 }

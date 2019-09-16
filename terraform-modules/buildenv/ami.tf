@@ -8,10 +8,10 @@ data "aws_ami" "buildenv" {
     values = ["annalect_build_env*"]
   }
 
-#   filter {
-#     name   = "virtualization-type"
-#     values = ["hvm"]
-#   }
+  #   filter {
+  #     name   = "virtualization-type"
+  #     values = ["hvm"]
+  #   }
 
   owners = ["${data.aws_caller_identity.this.account_id}"]
 }

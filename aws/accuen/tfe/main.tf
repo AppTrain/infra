@@ -9,13 +9,13 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-west-2"
+  region  = "us-west-2"
   version = "2.15"
 }
 
 provider "github" {
   organization = "accuenmedia"
-  version = "2.1"
+  version      = "2.1"
 }
 
 variable env {
@@ -24,7 +24,7 @@ variable env {
 }
 
 module example_tfe {
-    source = "../../../terraform-modules/repository"
-    name = "tfe_example"
-    description = "accuen pipeline data"
+  source      = "../../../terraform-modules/repository"
+  name        = "tfe_example"
+  description = "accuen pipeline data"
 }

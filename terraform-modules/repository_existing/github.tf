@@ -4,7 +4,7 @@ data "github_team" "accuen" {
 }
 
 data "github_repository" "this" {
-    name = "${var.name}"
+  name = "${var.name}"
 }
 
 # resource "github_repository" "docker_python" {

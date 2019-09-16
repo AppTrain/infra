@@ -21,13 +21,13 @@ resource "aws_instance" "builder" {
   }
 
   #user_data = "${data.template_file.user_data.rendered}"
-  iam_instance_profile = "${aws_iam_instance_profile.build_env_ec2.name}"
+  iam_instance_profile        = "${aws_iam_instance_profile.build_env_ec2.name}"
   associate_public_ip_address = false
 
-    root_block_device {
-      volume_type = "gp2"
-      volume_size = 500
-    }
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 500
+  }
 }
 
 # data "template_file" "user_data" {

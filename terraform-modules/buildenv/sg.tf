@@ -34,12 +34,12 @@
 # }
 
 resource "aws_security_group" "bastion" {
-  name = "annalect-bastion-${var.env}"
+  name        = "annalect-bastion-${var.env}"
   description = "security group for bastion in environment: ${var.env}"
-  vpc_id = "${module.this_vpc.vpc_id}"
+  vpc_id      = "${module.this_vpc.vpc_id}"
   tags = {
     Name = "annalect-bastion-${var.env}"
-    env = "${var.env}"
+    env  = "${var.env}"
   }
 }
 
@@ -68,12 +68,4 @@ resource "aws_security_group_rule" "bastion_outbound" {
   to_port   = 0
 }
 
-# resource "aws_security_group_rule" "bastion_to_builder" {
-#   # this allows traffic from bastion to talk to the builder instances
-#   security_group_id = "${aws_security_group.builder.id}"
-#   source_security_group_id = "${aws_security_group.bastion.id}"
-#   type = "ingress"
-#   protocol = "-1"
-#   from_port = 0
-#   to_port = 0
-# }
+# resource "aws_security_g

@@ -4,20 +4,20 @@ data "github_team" "accuen" {
 }
 
 resource "github_repository" "this" {
-    name = "${var.name}"
-    description = "${var.description}"
-    private = true
-    homepage_url = "https://www.annalect.com/"
-    has_issues = false
-    has_wiki = false
-    has_projects = false
-    gitignore_template = "Python"
-    topics = "${var.topics}"
+  name               = "${var.name}"
+  description        = "${var.description}"
+  private            = true
+  homepage_url       = "https://www.annalect.com/"
+  has_issues         = false
+  has_wiki           = false
+  has_projects       = false
+  gitignore_template = "Python"
+  topics             = "${var.topics}"
 }
 
 resource "github_repository_webhook" "infra" {
   repository = "${github_repository.this.name}"
-  count = "${var.buildkite_webhook == "invalid" ? 0 : 1}"
+  count      = "${var.buildkite_webhook == "invalid" ? 0 : 1}"
 
   configuration {
     url          = "${var.buildkite_webhook}"

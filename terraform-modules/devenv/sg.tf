@@ -34,12 +34,12 @@
 # }
 
 resource "aws_security_group" "bastion" {
-  name = "annalect-bastion-${var.env}"
+  name        = "annalect-bastion-${var.env}"
   description = "security group for bastion in environment: ${var.env}"
-  vpc_id = "${module.this_vpc.vpc_id}"
+  vpc_id      = "${module.this_vpc.vpc_id}"
   tags = {
     Name = "annalect-bastion-${var.env}"
-    env = "${var.env}"
+    env  = "${var.env}"
   }
 }
 
