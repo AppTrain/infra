@@ -5,7 +5,7 @@ module "qubole_vpc" {
   # Base 
 
   name = "accuen-${var.env}-vpc"
-  cidr = "10.0.0.0/16"
+  cidr = "10.43.0.0/16"
   azs  = "${var.vpc_azs}"
 
   # ##########################################################################
@@ -23,7 +23,7 @@ module "qubole_vpc" {
   # ##########################################################################
   # Private Subnets 
 
-  private_subnets = ["10.0.2.0/24", "10.0.3.0/24"]
+  private_subnets = ["10.43.1.0/24", "10.43.2.0/24"]
 
   private_subnet_tags = {
     isPublic = "false"
@@ -39,7 +39,7 @@ module "qubole_vpc" {
   # Database Subnets
 
   #   create_database_subnet_group = true
-  #   database_subnets = ["10.0.3.0/24", "10.0.4.0/24"]
+  #   database_subnets = ["10.43.3.0/24", "10.43.4.0/24"]
 
   #   database_subnet_tags = {
   #     Name        = "accuen-${var.env}-db-subnet"
@@ -54,7 +54,7 @@ module "qubole_vpc" {
   # ##########################################################################
   # Public Subnets
 
-  public_subnets = ["10.0.5.0/24"]
+  public_subnets = ["10.43.5.0/24", "10.43.6.0/24"]
 
   public_subnet_tags = {
     isPublic = "true"

@@ -1,16 +1,26 @@
 
-# data "aws_vpc" "default" {
-#   default = true
-# }
+data "aws_vpc" "default" {
+  id = "vpc-4a83e62f" # existing default vpc for accuen account
+}
 
-# data "aws_subnet_ids" "all" {
-#   vpc_id = data.aws_vpc.default.id
-# }
+resource "aws_vpc_peering_connection" "connect_to_default" {
+  peer_vpc_id = "${data.aws_vpc.default.id}"
+  vpc_id      = "${module.this_vpc.vpc_id}"
+  auto_accept = true
 
-# data "aws_security_group" "default" {
-#   vpc_id = data.aws_vpc.default.id
-#   name   = "default"
-# }
+  accepter {
+    allow_remote_vpc_dns_resolution = true
+  }
+
+  requester {
+    allow_remote_vpc_dns_resolution = true
+  }
+
+  tags = {
+    Name = "peering_connection_to_default_vpc"
+    env  = "dev1"
+  }
+}
 
 module "this_vpc" {
   source = "terraform-aws-modules/vpc/aws"
@@ -19,7 +29,7 @@ module "this_vpc" {
   # Base 
 
   name = "${local.env}-vpc"
-  cidr = "10.0.0.0/16"
+  cidr = "10.44.0.0/16"
   azs = [
     "us-west-2a",
     "us-west-2b",
@@ -42,7 +52,7 @@ module "this_vpc" {
   # ##########################################################################
   # Private Subnets 
 
-  private_subnets = ["10.0.32.0/24", "10.0.33.0/24"]
+  private_subnets = ["10.44.1.0/24", "10.44.2.0/24"]
 
   private_subnet_tags = {
     isPublic = "false"
@@ -58,7 +68,7 @@ module "this_vpc" {
   # Database Subnets
 
   create_database_subnet_group = true
-  database_subnets             = ["10.0.34.0/24", "10.0.37.0/24"]
+  database_subnets             = ["10.44.3.0/24", "10.44.4.0/24"]
 
   database_subnet_tags = {
     Name        = "accuen-${local.env}-db-subnet"
@@ -73,7 +83,7 @@ module "this_vpc" {
   # ##########################################################################
   # Public Subnets
 
-  public_subnets = ["10.0.35.0/24", "10.0.36.0/24"]
+  public_subnets = ["10.44.5.0/24", "10.44.6.0/24"]
 
   public_subnet_tags = {
     isPublic = "true"
