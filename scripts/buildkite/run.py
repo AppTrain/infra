@@ -1,6 +1,7 @@
 import os
 from collections import namedtuple
 import requests
+from loguru import logger
 from github import Github
 
 _buildkite_token = os.environ["BUILDKITE_TOKEN"]
@@ -29,6 +30,8 @@ def repositories(owners=["accuenmedia"]):
         "art",
         "tfm",
         "dv360reporting",
+        "dv360client",
+        "dv360lib",
     ]
 
     for repo in g.get_user().get_repos():
@@ -44,7 +47,10 @@ def repositories(owners=["accuenmedia"]):
         name = repo.name
         url = repo.git_url.replace("://", "@").replace("/", ":", 1)
 
-        yield Repo(owner.lower(), name.lower(), url)
+        r = Repo(owner.lower(), name.lower(), url)
+        logger.info(r)
+
+        yield r
 
 
 def _buildkite_pipeline_template(org, repo):
@@ -86,20 +92,23 @@ def create_pipeline(org, repo):
     if "message" in r and r["message"] == "Forbidden":
         raise Exception(f"forbidden from creating {org}/{repo}")
 
-    print(f"pipeline created for {org}/{repo}")
+    logger.info(f"pipeline created for {org}/{repo}")
 
 
 def get_pipeline_webhook(org, repo, retry=True):
-    print(f"get_pipeline_webhook for {org}/{repo}")
+    logger.info(f"get_pipeline_webhook for {org}/{repo}")
     endpoint = f"{_buildkite_api}/organizations/{org}/pipelines/{repo}"
     r = requests.get(endpoint, headers=_buildkite_headers).json()
-    err = r.get("message") == "Not Found"
+    not_found = r.get("message") == "Not Found"
 
-    if err and retry:
+    if not_found and retry:
+        logger.error(f"{org}/{repo} not found, retrying")
         create_pipeline(org, repo)
         r = get_pipeline_webhook(org, repo, retry=False)
-    elif err:
-        raise Exception(f"can not get or create {org}/{repo} pipeline")
+    elif not_found:
+        msg = f"can not get or create {org}/{repo} pipeline"
+        logger.error(msg)
+        raise Exception(msg)
 
     return r
 
@@ -114,16 +123,14 @@ def wire_github_buildkite(org, repo, hook_url):
 
     if needs_hook:
         repo.create_hook("web", dict(url=hook_url))
-        print(f"{org}/{repo} hook created on github")
+        logger.info(f"{org}/{repo} hook created on github")
     else:
         pass
-        # print(f"{org}/{repo} github hook ALREADY EXISTS :-)")
+        # logger.info(f"{org}/{repo} github hook ALREADY EXISTS :-)")
 
 
 def wire(repository):
-    hook_response = get_pipeline_webhook(
-        repository.owner.lower(), repository.name.lower()
-    )
+    hook_response = get_pipeline_webhook(repository.owner, repository.name)
 
     hook_url = hook_response["provider"]["webhook_url"]
     wire_github_buildkite(repository.owner, repository.name, hook_url)
@@ -132,11 +139,6 @@ def wire(repository):
 def wire_all():
     for repository in repositories():
         wire(repository)
-
-        # try:
-        #     wire(repository)
-        # except Exception as e:
-        #     print(f"FAILED !!!!!!!!!! {e}")
 
 
 if __name__ == "__main__":
