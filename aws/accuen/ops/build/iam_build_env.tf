@@ -139,6 +139,17 @@ data "aws_iam_policy_document" "build_env" {
     resources = ["*"]
   }
 
+  # RDS
+  statement {
+    effect = "Allow"
+    actions = [
+      "rds:*",
+      # "rds:DescribeDBSnapshots",
+    ]
+
+    resources = ["*"]
+  }
+
   # S3
   statement {
     effect = "Allow"
