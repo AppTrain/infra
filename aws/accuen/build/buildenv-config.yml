@@ -1,0 +1,23 @@
+- name: build environment configure
+  hosts: tag_ansible_build_ops_buildenv
+  become: True
+  gather_facts: True
+  vars:
+    buildkite_token: "{{ vault_buildkite_token }}"
+  tasks:
+    - name: configure buildkite
+      include_role:
+        name: buildkite_config
+
+    # - name: cloudwatch instance monitoring
+    #   include_role:
+    #     name: cloudwatch
+
+    # - name: aws logs
+    #   include_role:
+    #     name: awslogs
+    #   vars:
+    #     awslogs_config:
+    #       - file: /var/log/syslog
+    #         datetime_format: "%b %d %H:%M:%S"
+    #         log_group_name: syslog
