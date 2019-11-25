@@ -1,11 +1,10 @@
-
 data "aws_vpc" "default" {
   id = "vpc-4a83e62f" # existing default vpc for accuen account
 }
 
 resource "aws_vpc_peering_connection" "connect_to_default" {
-  peer_vpc_id = "${data.aws_vpc.default.id}"
-  vpc_id      = "${module.this_vpc.vpc_id}"
+  peer_vpc_id = data.aws_vpc.default.id
+  vpc_id      = module.this_vpc.vpc_id
   auto_accept = true
 
   accepter {
@@ -23,21 +22,14 @@ resource "aws_vpc_peering_connection" "connect_to_default" {
 }
 
 locals {
-  route_ids = "${distinct(concat(
-    module.this_vpc.private_route_table_ids,
-    [module.this_vpc.vpc_main_route_table_id],
-    module.this_vpc.database_route_table_ids,
-    module.this_vpc.elasticache_route_table_ids,
-    module.this_vpc.public_route_table_ids,
-    module.this_vpc.intra_route_table_ids,
-  ))}"
+  route_ids = distinct(concat(module.this_vpc.private_route_table_ids, [module.this_vpc.vpc_main_route_table_id], module.this_vpc.database_route_table_ids, module.this_vpc.elasticache_route_table_ids, module.this_vpc.public_route_table_ids, module.this_vpc.intra_route_table_ids, ))
 }
 
 resource "aws_route" "route_to_default" {
-  count                     = "${length(local.route_ids)}"
-  route_table_id            = "${local.route_ids[count.index]}"
-  destination_cidr_block    = "${data.aws_vpc.default.cidr_block}"
-  vpc_peering_connection_id = "${aws_vpc_peering_connection.connect_to_default.id}"
+  count                     = length(local.route_ids)
+  route_table_id            = local.route_ids[count.index]
+  destination_cidr_block    = data.aws_vpc.default.cidr_block
+  vpc_peering_connection_id = aws_vpc_peering_connection.connect_to_default.id
 }
 
 module "this_vpc" {
@@ -61,6 +53,7 @@ module "this_vpc" {
   enable_dns_support   = true
   enable_dns_hostnames = true
   enable_nat_gateway   = true
+
   #dhcp_options
 
   nat_gateway_tags = {
@@ -90,12 +83,12 @@ module "this_vpc" {
 
   database_subnet_tags = {
     Name        = "accuen-${local.env}-db-subnet"
-    Environment = "${local.env}"
+    Environment = local.env
   }
 
   database_subnet_group_tags = {
     Name        = "accuen-${local.env}-db-subnet-group"
-    Environment = "${local.env}"
+    Environment = local.env
   }
 
   # ##########################################################################
@@ -119,6 +112,6 @@ module "this_vpc" {
   tags = {
     Terraform   = "true"
     Project     = "annalect-${local.env}"
-    Environment = "${local.env}"
+    Environment = local.env
   }
 }
