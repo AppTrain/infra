@@ -1,4 +1,5 @@
-data "aws_caller_identity" "this" {}
+data "aws_caller_identity" "this" {
+}
 
 data "aws_ami" "buildenv" {
   most_recent = true
@@ -13,5 +14,5 @@ data "aws_ami" "buildenv" {
   #     values = ["hvm"]
   #   }
 
-  owners = ["${data.aws_caller_identity.this.account_id}"]
+  owners = [data.aws_caller_identity.this.account_id]
 }

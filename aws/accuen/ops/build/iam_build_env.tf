@@ -1,18 +1,17 @@
 resource "aws_iam_policy" "build_env" {
   name        = "${var.env}-buildenv"
-  policy      = "${data.aws_iam_policy_document.build_env.json}"
+  policy      = data.aws_iam_policy_document.build_env.json
   path        = "/annalect/"
   description = "policy to define ec2 instance permissions in the `${var.env}` environment"
 }
 
 data "aws_iam_policy_document" "build_env" {
-
   # IAM
   statement {
     effect = "Allow"
 
     actions = [
-      "iam:*"
+      "iam:*",
     ]
 
     resources = [
@@ -43,7 +42,6 @@ data "aws_iam_policy_document" "build_env" {
     ]
 
     resources = [
-      # TODO: Can this be tightened by env? or something else?
       "arn:aws:ssm::${data.aws_caller_identity.this.account_id}:parameter/*",
     ]
   }
@@ -57,7 +55,6 @@ data "aws_iam_policy_document" "build_env" {
       "secretsmanager:Get*",
     ]
     resources = [
-      # TODO: Can this be tightened by env? or something else?
       "arn:aws:secretsmanager:us-west-2:${data.aws_caller_identity.this.account_id}:secret:*",
     ]
   }
@@ -81,7 +78,6 @@ data "aws_iam_policy_document" "build_env" {
       "sqs:SendMessage",
       "sqs:GetQueueAttributes",
       "sqs:GetQueueUrl",
-
     ]
     resources = ["*"]
   }
@@ -122,19 +118,19 @@ data "aws_iam_policy_document" "build_env" {
     resources = ["*"]
   }
 
-
   # EC2
   statement {
     effect = "Allow"
     actions = [
       "ec2:*",
-      # "ec2:DescribeInstances",
-      # "ec2:DescribeInstanceStatus",
-      # "ec2:GetConsoleOutput",
-      # "ec2:AssociateAddress",
-      # "ec2:DescribeAddresses",
-      # "ec2:DescribeSecurityGroups",
     ]
+
+    # "ec2:DescribeInstances",
+    # "ec2:DescribeInstanceStatus",
+    # "ec2:GetConsoleOutput",
+    # "ec2:AssociateAddress",
+    # "ec2:DescribeAddresses",
+    # "ec2:DescribeSecurityGroups",
 
     resources = ["*"]
   }
@@ -144,8 +140,9 @@ data "aws_iam_policy_document" "build_env" {
     effect = "Allow"
     actions = [
       "rds:*",
-      # "rds:DescribeDBSnapshots",
     ]
+
+    # "rds:DescribeDBSnapshots",
 
     resources = ["*"]
   }
@@ -173,14 +170,14 @@ data "aws_iam_policy_document" "build_env" {
     # TODO: security review of necessary permissions
     actions = [
       "route53:*",
-      # "route53:ListHostedZones",
-      # "route53:ListTagsForResource",
-      # "route53:ListResourceRecords",
     ]
 
+    # "route53:ListHostedZones",
+    # "route53:ListTagsForResource",
+    # "route53:ListResourceRecords",
+
     resources = [
-      #"arn:aws:route53:::*",
-      "*"
+      "*",
     ]
   }
 
@@ -196,7 +193,6 @@ data "aws_iam_policy_document" "build_env" {
     ]
 
     resources = [
-      # TODO: tighten to specific log group?
       "arn:aws:logs:::log-group:*", #/some/log/group*",
     ]
   }

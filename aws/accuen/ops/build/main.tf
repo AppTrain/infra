@@ -13,5 +13,5 @@ terraform {
 
 resource "aws_key_pair" "builder" {
   key_name   = "annalect_${var.env}_builder"
-  public_key = "${file("${pathexpand("~/.annalect/ssh/builder.pub")}")}"
+  public_key = file(pathexpand("~/.annalect/ssh/builder.pub"))
 }

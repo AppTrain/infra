@@ -1,5 +1,5 @@
 variable "env" {
-  type    = "string"
+  type    = string
   default = "build_ops"
 }
 

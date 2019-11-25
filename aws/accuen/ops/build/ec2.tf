@@ -1,14 +1,14 @@
 resource "aws_instance" "builder" {
-  ami           = "${data.aws_ami.buildenv.image_id}"
+  ami           = data.aws_ami.buildenv.image_id
   instance_type = "m5.xlarge"
-  count         = "${var.builder_count}"
+  count         = var.builder_count
 
   vpc_security_group_ids = [
-    "${aws_security_group.builder.id}",
+    aws_security_group.builder.id,
   ]
 
-  key_name  = "${aws_key_pair.builder.key_name}"
-  subnet_id = "${data.aws_subnet.selected.id}"
+  key_name  = aws_key_pair.builder.key_name
+  subnet_id = data.aws_subnet.selected.id
 
   # lifecycle {
   #   ignore_changes = ["subnet_id"]
@@ -16,12 +16,12 @@ resource "aws_instance" "builder" {
 
   tags = {
     Name    = "annalect_buildenv_${var.env}_${count.index}"
-    env     = "${var.env}"
+    env     = var.env
     ansible = "${var.env}_buildenv"
   }
 
   #user_data = "${data.template_file.user_data.rendered}"
-  iam_instance_profile        = "${aws_iam_instance_profile.build_env_ec2.name}"
+  iam_instance_profile        = aws_iam_instance_profile.build_env_ec2.name
   associate_public_ip_address = false
 
   root_block_device {
