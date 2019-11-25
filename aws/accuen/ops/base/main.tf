@@ -10,7 +10,6 @@ terraform {
 #   region = "us-west-2"
 #   version = "2.15"
 # }
-
 # variable env {
 #   description = "environment name"
 #   default     = "ops"
