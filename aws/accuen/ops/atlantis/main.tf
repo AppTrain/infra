@@ -2,7 +2,6 @@ variable "github_token" {
   description = "github user token"
 }
 
-
 module "atlantis" {
   source  = "terraform-aws-modules/atlantis/aws"
   version = "~> 2.0"
@@ -25,6 +24,6 @@ module "atlantis" {
 
   # Atlantis
   atlantis_github_user       = "accuenengineering"
-  atlantis_github_user_token = "${var.github_token}"
+  atlantis_github_user_token = var.github_token
   atlantis_repo_whitelist    = ["github.com/accuenmedia/*"]
 }
