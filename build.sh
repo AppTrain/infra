@@ -21,7 +21,8 @@ cd $BUILD_CONTEXT/aws/accuen/dev1 && ./build.sh
 # TODO: fix permissions indicated in https://buildkite.com/accuenmedia/infra/builds/47#8b265f64-1db0-4fe4-9fb9-80c4cfd3c8b8
 
 echo "--- :docker: build & push containers/tunnel"
-cd $BUILD_CONTEXT/containers/tunnel && ./build.sh
+#cd $BUILD_CONTEXT/containers/tunnel && ./build.sh
+echo "tunnel container build currently disabled"
 
 echo "--- :docker: build & push containers/pgcli"
 cd $BUILD_CONTEXT/containers/pgcli && ./build.sh
