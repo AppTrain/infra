@@ -4,6 +4,6 @@ resource "aws_s3_bucket" "artifacts" {
 
   tags = {
     Name        = "build_artifacts"
-    Environment = "${var.env}"
+    Environment = var.env
   }
 }

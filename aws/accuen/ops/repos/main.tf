@@ -11,7 +11,7 @@ provider "aws" {
   version = "2.15"
 }
 
-variable env {
+variable "env" {
   description = "environment name"
   default     = "ops"
 }

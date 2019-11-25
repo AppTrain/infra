@@ -1,5 +1,3 @@
-
-
 # resource "github_repository" "this" {
 #     name = "packer-buildenv"
 #     description = "build environment with buildkite"
@@ -11,7 +9,6 @@
 #     gitignore_template = "Python"
 #     topics = ["packer", "ami"]
 # }
-
 # resource "github_team_repository" "this" {
 #   team_id    = "${data.github_team.accuen.id}"
 #   repository = "${github_repository.this.name}"

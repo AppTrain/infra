@@ -5,5 +5,5 @@ provider "github" {
 
 resource "github_user_ssh_key" "buildkite" {
   title = "buildkite build env 2019 07"
-  key   = "${file("${pathexpand("~/.annalect/ssh/buildkite.pub")}")}"
+  key   = file(pathexpand("~/.annalect/ssh/buildkite.pub"))
 }
