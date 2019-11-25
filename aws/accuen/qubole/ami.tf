@@ -1,4 +1,5 @@
-data "aws_caller_identity" "this" {}
+data "aws_caller_identity" "this" {
+}
 
 data "aws_ami" "ubuntu_1804" {
   most_recent = true

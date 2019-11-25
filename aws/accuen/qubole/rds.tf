@@ -29,16 +29,18 @@ module "quboledb" {
   allocated_storage = 100
   storage_encrypted = true
   multi_az          = false
+
   #snapshot_identifier = "${data.aws_db_snapshot.db_snapshot.id}" # provision this rds instance with this snapshot
   # kms_key_id = "arm:aws:kms:<region>:<account id>:key/<kms key id>"
 
   name     = "annalectdig${var.env}"
-  username = "${var.rds_username}"
-  password = "${var.rds_password}"
+  username = var.rds_username
+  password = var.rds_password
   port     = 3306
+
   #iam_database_authentication_enabled = true
-  vpc_security_group_ids  = ["${aws_security_group.qubole_rds.id}"]
-  subnet_ids              = "${module.qubole_vpc.private_subnets}"
+  vpc_security_group_ids  = [aws_security_group.qubole_rds.id]
+  subnet_ids              = module.qubole_vpc.private_subnets
   maintenance_window      = "Mon:00:00-Mon:03:00"
   apply_immediately       = true
   backup_window           = "03:00-06:00"
@@ -55,7 +57,7 @@ module "quboledb" {
 
   tags = {
     Name        = "annalect-dig-rds-${var.env}"
-    Environment = "${var.env}"
+    Environment = var.env
   }
   family                    = "mysql8.0"
   major_engine_version      = "8.0"

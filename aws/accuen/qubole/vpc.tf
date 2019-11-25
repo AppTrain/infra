@@ -6,7 +6,7 @@ module "qubole_vpc" {
 
   name = "accuen-${var.env}-vpc"
   cidr = "10.43.0.0/16"
-  azs  = "${var.vpc_azs}"
+  azs  = var.vpc_azs
 
   # ##########################################################################
   # --
@@ -14,6 +14,7 @@ module "qubole_vpc" {
   enable_dns_support   = true
   enable_dns_hostnames = true
   enable_nat_gateway   = true
+
   #dhcp_options
 
   nat_gateway_tags = {
@@ -72,6 +73,6 @@ module "qubole_vpc" {
   tags = {
     Terraform   = "true"
     Project     = "accuen-${var.env}"
-    Environment = "${var.env}"
+    Environment = var.env
   }
 }

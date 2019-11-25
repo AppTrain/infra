@@ -1,26 +1,26 @@
-
 resource "aws_instance" "qubole_bastion" {
-  ami           = "${data.aws_ami.qubole_bastion.image_id}"
+  ami           = data.aws_ami.qubole_bastion.image_id
   instance_type = "m5.xlarge"
+
   #count         = 1
 
   vpc_security_group_ids = [
-    "${aws_security_group.qubole_bastion.id}",
+    aws_security_group.qubole_bastion.id,
   ]
-  key_name  = "${aws_key_pair.ansible.key_name}"
-  subnet_id = "${module.qubole_vpc.public_subnets[0]}"
+  key_name  = aws_key_pair.ansible.key_name
+  subnet_id = module.qubole_vpc.public_subnets[0]
 
   lifecycle {
-    ignore_changes = ["subnet_id"]
+    ignore_changes = [subnet_id]
   }
 
   tags = {
     Name    = "annalect-dig-bastion-${var.env}"
-    env     = "${var.env}"
+    env     = var.env
     ansible = "${var.env}_bastion"
   }
 
-  user_data = "${data.template_file.user_data.rendered}"
+  user_data = data.template_file.user_data.rendered
   #iam_instance_profile = "${aws_iam_instance_profile.ec2_instance.name}"
   #associate_public_ip_address = false
 
@@ -40,10 +40,11 @@ data "template_file" "user_data" {
               apt-get install ntp -y
               apt-get install ntpstat -y
               ntpq -pcrv
-              EOF
+EOF
+
 }
 
 resource "aws_eip" "bastion" {
-  instance = "${aws_instance.qubole_bastion.id}"
+  instance = aws_instance.qubole_bastion.id
   vpc      = true
 }
