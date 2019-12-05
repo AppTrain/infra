@@ -52,3 +52,12 @@ resource "aws_ecr_repository" "art" {
     description = "audience real time"
   }
 }
+
+resource "aws_ecr_repository" "dv360" {
+  name = "dv360"
+  tags = {
+    Terraform   = true
+    github      = "https://github.com/accuenmedia/dv360reporting"
+    description = "dv360 environments"
+  }
+}

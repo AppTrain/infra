@@ -18,10 +18,6 @@ data "github_repository" "airflow" {
   name = "airflow"
 }
 
-data "github_repository" "entrypoint" {
-  name = "entrypoint"
-}
-
 data "github_repository" "buildenv" {
   name = "packer-buildenv"
 }
