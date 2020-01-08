@@ -25,7 +25,7 @@ echo "--- :docker: build & push containers/tunnel"
 echo "tunnel container build currently disabled"
 
 echo "--- :docker: build & push containers/pgcli"
-cd $BUILD_CONTEXT/containers/pgcli && ./build.sh
+#cd $BUILD_CONTEXT/containers/pgcli && ./build.sh
 
 # echo "--- :packer: build ubuntu bionic"
 # cd $BUILD_CONTEXT/ami/ubuntu1804 && packer build bionic.json
