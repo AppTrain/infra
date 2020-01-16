@@ -22,3 +22,7 @@ variable "vpc_azs" {
 variable "access_ips" {
   type = list(string)
 }
+
+variable "entrypoint_public_key_file" {
+  type = string
+}
