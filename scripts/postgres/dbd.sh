@@ -1,4 +1,5 @@
 #!/bin/bash
+# source infra/scripts/postgres/dbd.sh
 
 set -eu -o pipefail
 

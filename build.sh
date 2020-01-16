@@ -9,7 +9,7 @@ echo
 echo "--- use :aws: cli to :docker: login to :ecr:"
 eval $(aws ecr get-login --no-include-email)
 
-echo "--- :terraform: aws/accuen/ops/base"
+echo "--- :terraform: aws/accuen/base"
 cd $BUILD_CONTEXT/aws/accuen/base && ./build.sh
 
 echo "--- :terraform: aws/accuen/dev1"
