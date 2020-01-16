@@ -1,4 +1,3 @@
-
 # data "aws_vpc" "default" {
 #   default = true
 # }
@@ -20,7 +19,7 @@ module "this_vpc" {
 
   name = "accuen-${var.env}-vpc"
   cidr = "10.42.0.0/16"
-  azs  = "${var.vpc_azs}"
+  azs  = var.vpc_azs
 
   # ##########################################################################
   # --
@@ -28,6 +27,7 @@ module "this_vpc" {
   enable_dns_support   = true
   enable_dns_hostnames = true
   enable_nat_gateway   = true
+
   #dhcp_options
 
   nat_gateway_tags = {
@@ -86,6 +86,6 @@ module "this_vpc" {
   tags = {
     Terraform   = "true"
     Project     = "accuen-${var.env}"
-    Environment = "${var.env}"
+    Environment = var.env
   }
 }

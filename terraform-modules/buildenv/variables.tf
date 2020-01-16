@@ -1,18 +1,18 @@
 variable "env" {
-  type = "string"
+  type = string
 }
 
 variable "public_key" {
-  type = "string"
+  type = string
 }
 
 variable "builder_count" {
-  type    = "string"
+  type    = string
   default = 1
 }
 
 variable "vpc_azs" {
-  type = "list"
+  type = list(string)
   default = [
     "us-west-2a",
     "us-west-2b",
@@ -20,5 +20,5 @@ variable "vpc_azs" {
 }
 
 variable "access_ips" {
-  type = "list"
+  type = list(string)
 }
