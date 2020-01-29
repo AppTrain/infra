@@ -89,3 +89,37 @@ module "this_vpc" {
     Environment = var.env
   }
 }
+
+data "aws_vpc" "default" {
+  id = "vpc-4a83e62f" # existing default vpc for accuen account
+}
+
+resource "aws_vpc_peering_connection" "connect_to_default" {
+  peer_vpc_id = data.aws_vpc.default.id
+  vpc_id      = module.this_vpc.vpc_id
+  auto_accept = true
+
+  accepter {
+    allow_remote_vpc_dns_resolution = true
+  }
+
+  requester {
+    allow_remote_vpc_dns_resolution = true
+  }
+
+  tags = {
+    Name = "peering_connection_to_default_vpc"
+    env  = var.env
+  }
+}
+
+locals {
+  route_ids = distinct(concat(module.this_vpc.private_route_table_ids, [module.this_vpc.vpc_main_route_table_id], module.this_vpc.database_route_table_ids, module.this_vpc.elasticache_route_table_ids, module.this_vpc.public_route_table_ids, module.this_vpc.intra_route_table_ids, ))
+}
+
+resource "aws_route" "route_to_default" {
+  count                     = length(local.route_ids)
+  route_table_id            = local.route_ids[count.index]
+  destination_cidr_block    = data.aws_vpc.default.cidr_block
+  vpc_peering_connection_id = aws_vpc_peering_connection.connect_to_default.id
+}
