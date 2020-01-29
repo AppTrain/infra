@@ -108,7 +108,7 @@ resource "aws_vpc_peering_connection" "connect_to_default" {
   }
 
   tags = {
-    Name = "peering_connection_to_default_vpc"
+    Name = "connect_build_to_default_vpc"
     env  = var.env
   }
 }
@@ -122,4 +122,5 @@ resource "aws_route" "route_to_default" {
   route_table_id            = local.route_ids[count.index]
   destination_cidr_block    = data.aws_vpc.default.cidr_block
   vpc_peering_connection_id = aws_vpc_peering_connection.connect_to_default.id
+  #name = "connect_build_to_default_vpc_${count.index}"
 }
