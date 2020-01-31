@@ -32,6 +32,7 @@ def repositories(owners=["accuenmedia"]):
         "dv360reporting",
         "dv360client",
         "dv360lib",
+        "secret",
     ]
 
     for repo in g.get_user().get_repos():
