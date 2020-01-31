@@ -24,7 +24,7 @@ variable env {
 }
 
 module example_tfe {
-  source      = "../../../terraform-modules/repository"
+  source      = "../../../tfm/repository"
   name        = "tfe_example"
   description = "accuen pipeline data"
 }
