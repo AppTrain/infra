@@ -14,12 +14,20 @@ variable "user" {
   type = string
 }
 
-variable "instance_type" {
+variable "github_user" {
   type = string
+}
+
+variable "instance_type" {
+  type    = string
   default = "m5.xlarge"
 }
 
-variable "access_ips" {
+variable "access_ssh" {
+  type = list(string)
+}
+
+variable "access_web" {
   type = list(string)
 }
 

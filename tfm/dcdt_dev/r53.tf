@@ -1,11 +1,8 @@
-data "aws_route53_zone" "outside" {
-  name = "${var.env}.out.accuenplatform.com."
-}
 
 resource "aws_route53_record" "builder" {
-  zone_id = data.aws_route53_zone.outside.id
-  name    = "${var.user}-smp-dev.${var.env}.out.accuenplatform.com"
+  zone_id = var.zone_id
+  name    = var.dns_name
   type    = "A"
   ttl     = 300
-  records = [aws_instance.smp_dev.public_ip]
+  records = [aws_instance.this.public_ip]
 }

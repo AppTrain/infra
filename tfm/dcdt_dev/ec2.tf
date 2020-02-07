@@ -2,15 +2,41 @@ locals {
   key_name = "dev_user_${var.user}"
 }
 
+data aws_iam_instance_profile "dev_machine" {
+  name = "dev1_dev_machine"
+}
+
+
+data "template_cloudinit_config" "config" {
+  gzip          = true
+  base64_encode = true
+
+  part {
+    content = "#cloud-config\n---\nruncmd:\n - date"
+  }
+
+  # part {
+  #   filename     = "init.cfg"
+  #   content_type = "text/cloud-config"
+  #   content      = "${data.template_file.script.rendered}"
+  # }
+
+  part {
+    content_type = "text/x-shellscript"
+    content      = templatefile("${path.module}/init.sh", { user = var.user, github_user = var.github_user })
+    #templatefile("${path.module}/backends.tmpl", { port = 8080, ip_addrs = ["10.0.0.1", "10.0.0.2"] })
+  }
+}
+
 resource "aws_instance" "this" {
   ami           = data.aws_ami.this.image_id
   instance_type = var.instance_type
 
   vpc_security_group_ids = [
-    aws_security_group.smp_dev.id,
+    aws_security_group.this.id,
   ]
 
-  key_name  = local.key_name
+  key_name  = "annalect-dev1-bastion"
   subnet_id = var.subnet_id
 
   # lifecycle {
@@ -18,14 +44,15 @@ resource "aws_instance" "this" {
   # }
 
   tags = {
-    Name    = "annalect_smp_dev_${var.env}_${var.user}"
-    env     = var.env
-    ansible = var.env
-    user    = var.user
+    Name        = "dc_${var.env}_${var.user}"
+    env         = var.env
+    ansible     = var.env
+    user        = var.user
+    github_user = var.github_user
   }
 
-  #user_data = "${data.template_file.user_data.rendered}"
-  #iam_instance_profile = "${aws_iam_instance_profile.ec2_instance.name}"
+  user_data_base64            = data.template_cloudinit_config.config.rendered
+  iam_instance_profile        = data.aws_iam_instance_profile.dev_machine.name
   associate_public_ip_address = true
 
   root_block_device {

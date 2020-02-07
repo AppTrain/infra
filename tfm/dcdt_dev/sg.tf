@@ -21,14 +21,40 @@ resource "aws_security_group_rule" "this_outbound" {
   to_port   = 65535
 }
 
-resource "aws_security_group_rule" "this_inbound" {
+resource "aws_security_group_rule" "this_inbound_22" {
   security_group_id = aws_security_group.this.id
 
   type     = "ingress"
   protocol = "tcp"
 
-  cidr_blocks = var.access_ips
+  cidr_blocks = var.access_ssh
 
-  from_port = 0
-  to_port   = 65535
+  from_port = 22
+  to_port   = 22
+}
+
+resource "aws_security_group_rule" "this_inbound_80" {
+  security_group_id = aws_security_group.this.id
+  # TODO: SECURITY: FIX
+
+  type     = "ingress"
+  protocol = "tcp"
+
+  cidr_blocks = var.access_web
+
+  from_port = 80
+  to_port   = 80
+}
+
+resource "aws_security_group_rule" "this_inbound_443" {
+  security_group_id = aws_security_group.this.id
+  # TODO: SECURITY: FIX
+
+  type     = "ingress"
+  protocol = "tcp"
+
+  cidr_blocks = var.access_web
+
+  from_port = 443
+  to_port   = 443
 }
