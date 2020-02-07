@@ -58,3 +58,15 @@ resource "aws_security_group_rule" "this_inbound_443" {
   from_port = 443
   to_port   = 443
 }
+
+resource "aws_security_group_rule" "this_inbound_mosh" {
+  security_group_id = aws_security_group.this.id
+
+  type     = "ingress"
+  protocol = "udp"
+
+  cidr_blocks = var.access_ssh
+
+  from_port = 60001
+  to_port   = 60001
+}
