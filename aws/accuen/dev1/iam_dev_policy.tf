@@ -1,0 +1,235 @@
+resource "aws_iam_policy" "dev_capabilities" {
+  name        = "${local.env}-developer-capabilities"
+  policy      = data.aws_iam_policy_document.dev_capabilities.json
+  path        = "/annalect/"
+  description = "policy to define ec2 instance permissions in the `${local.env}` environment"
+}
+
+data "aws_iam_policy_document" "dev_capabilities" {
+  # IAM
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "iam:*",
+    ]
+
+    resources = [
+      #"arn:aws:iam::${data.aws_caller_identity.this.account_id}:*",
+      "*",
+    ]
+  }
+
+  # LAMBDA
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "lambda:*",
+    ]
+
+    resources = ["*"]
+    #  "arn:aws:lambda::${data.aws_caller_identity.this.account_id}:*",
+    #]
+  }
+
+  # SSM
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "ssm:GetParameters",
+      "ssm:GetParameter",
+    ]
+
+    resources = [
+      "arn:aws:ssm::${data.aws_caller_identity.this.account_id}:parameter/*",
+    ]
+  }
+
+  # SECRETS MANAGER
+  statement {
+    effect = "Allow"
+    actions = [
+      "secretsmanager:List*",
+      "secretsmanager:Describe*",
+      "secretsmanager:Get*",
+    ]
+    resources = [
+      "arn:aws:secretsmanager:us-west-2:${data.aws_caller_identity.this.account_id}:secret:*",
+    ]
+  }
+
+  # CLOUD WATCH
+  statement {
+    effect = "Allow"
+    actions = [
+      "cloudwatch:PutMetricData",
+    ]
+    resources = ["*"]
+  }
+
+  # SQS
+  statement {
+    effect = "Allow"
+    actions = [
+      "sqs:ChangeMessageVisibility",
+      "sqs:DeleteMessage",
+      "sqs:ReceiveMessage",
+      "sqs:SendMessage",
+      "sqs:GetQueueAttributes",
+      "sqs:GetQueueUrl",
+      "sqs:ListQueueTags",
+    ]
+    resources = ["*"]
+  }
+
+  # SNS
+  statement {
+    effect = "Allow"
+    actions = [
+      "sns:Publish",
+      "sns:GetTopicAttributes",
+      "sns:ListTagsForResource",
+      "sns:GetSubscriptionAttributes",
+    ]
+    resources = ["*"]
+  }
+
+  # ECS
+  statement {
+    effect = "Allow"
+    actions = [
+      "ecs:StartTask",
+      "ecs:StopTask",
+      "ecs:DiscoverPollEndpoint",
+      "ecs:StartTelemetrySession",
+      "ecs:RegisterContainerInstance",
+      "ecs:DeregisterContainerInstance",
+      "ecs:DescribeContainerInstances",
+      "ecs:Submit*",
+      "ecs:Poll",
+      "ecs:DescribeTasks",
+    ]
+    resources = ["*"]
+  }
+
+  # ECR
+  statement {
+    effect = "Allow"
+    actions = [
+      "ecr:*",
+    ]
+    resources = ["*"]
+  }
+
+  # EC2
+  statement {
+    effect = "Allow"
+    actions = [
+      "ec2:*",
+    ]
+
+    # "ec2:DescribeInstances",
+    # "ec2:DescribeInstanceStatus",
+    # "ec2:GetConsoleOutput",
+    # "ec2:AssociateAddress",
+    # "ec2:DescribeAddresses",
+    # "ec2:DescribeSecurityGroups",
+
+    resources = ["*"]
+  }
+
+  # RDS
+  statement {
+    effect = "Allow"
+    actions = [
+      "rds:*",
+    ]
+
+    # "rds:DescribeDBSnapshots",
+
+    resources = ["*"]
+  }
+
+  # S3
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "s3:Get*",
+      "s3:List*",
+      "s3:PutObject",
+    ]
+
+    resources = [
+      "arn:aws:s3:::com.annalect.dig.terraform*",
+      "arn:aws:s3:::com.annalect.build.artifacts*",
+      "arn:aws:s3:::com.annalect.build.config*",
+    ]
+  }
+
+  # R53
+  statement {
+    effect = "Allow"
+
+    # TODO: security review of necessary permissions
+    actions = [
+      "route53:*",
+    ]
+
+    # "route53:ListHostedZones",
+    # "route53:ListTagsForResource",
+    # "route53:ListResourceRecords",
+
+    resources = [
+      "*",
+    ]
+  }
+
+  # LOGS
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "logs:PutLogEvents",
+      "logs:CreateLogStream",
+      "logs:DescribeLogStreams",
+      "logs:DescribeLogGroups",
+    ]
+
+    resources = [
+      "arn:aws:logs:::log-group:*", #/some/log/group*",
+    ]
+  }
+
+  # EVENTS
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "events:DescribeRule",
+      "events:ListTagsForResource",
+      "events:ListTargetsByRule",
+      "events:PutTargets",
+    ]
+
+    resources = ["*"]
+    #  "arn:aws:logs:::log-group:*", #/some/log/group*",
+  }
+
+  # API GATEWAY
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "apigateway:GET",
+      "apigateway:DELETE",
+      "apigateway:POST",
+      "apigateway:PUT",
+      "apigateway:PATCH",
+    ]
+
+    resources = ["*"]
+  }
+}
