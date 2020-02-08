@@ -1,5 +1,5 @@
 resource "aws_security_group" "this" {
-  name        = "annalect_smp_${var.env}_${var.user}"
+  name        = "${var.env}_for_${var.user}"
   description = "security group for builder instances in environment: ${var.env} user: ${var.user}"
   vpc_id      = var.vpc_id
   tags = {
