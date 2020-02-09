@@ -10,6 +10,14 @@ variable "subnet_id" {
   type = string
 }
 
+variable "full_name" {
+  type = string
+}
+
+variable "email" {
+  type = string
+}
+
 variable "user" {
   type = string
 }
@@ -36,6 +44,10 @@ variable "zone_id" {
 }
 
 variable "dns_name" {
+  type = string
+}
+
+variable "host_name" {
   type = string
 }
 

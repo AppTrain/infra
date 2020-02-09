@@ -5,8 +5,7 @@ export DEV_HOME=/opt/dev
 export LOCAL_BIN="$DEV_HOME/.local/other/bin"
 export AUTHORIZED_KEYS="$DEV_HOME/.ssh/authorized_keys"
 
-
-
+hostnamectl set-hostname ${host_name}
 
 # create authorized key file
 curl -fs https://github.com/${github_user}.keys > $AUTHORIZED_KEYS
@@ -14,6 +13,9 @@ curl -fs https://github.com/${github_user}.keys > $AUTHORIZED_KEYS
 # change default username to requested
 usermod -l ${user} aeu
 ssh-keygen -t ed25519 -a 100 -f $DEV_HOME/.ssh/id_ed25519 -C "${user}" -N ""
+sudo -i -u ${user} whoami
+sudo -i -u ${user} git config --global user.name "${full_name}"
+sudo -i -u ${user} git config --global user.email "${email}"
 
 cat << EOF
 EC2_INSTANCE_ID="`wget -q -O - http://169.254.169.254/latest/meta-data/instance-id || die \"wget instance-id has failed: $?\"`"
@@ -29,8 +31,6 @@ echo "$key_contents"
 
 EOF > $LOCAL_BIN/connect_github
 chmod +x $LOCAL_BIN/connect_github
-
-
 
 chown -R ${user}: $DEV_HOME
 chmod 600 $DEV_HOME/.ssh/id_ed25519
