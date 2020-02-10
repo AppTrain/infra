@@ -16,6 +16,7 @@ ssh-keygen -t ed25519 -a 100 -f $DEV_HOME/.ssh/id_ed25519 -C "${user}" -N ""
 sudo -i -u ${user} whoami
 sudo -i -u ${user} git config --global user.name "${full_name}"
 sudo -i -u ${user} git config --global user.email "${email}"
+sudo -i -u ${user} echo "${env}" > ~/.annalectenv
 
 cat << EOF
 EC2_INSTANCE_ID="`wget -q -O - http://169.254.169.254/latest/meta-data/instance-id || die \"wget instance-id has failed: $?\"`"

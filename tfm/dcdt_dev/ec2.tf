@@ -23,7 +23,7 @@ data "template_cloudinit_config" "config" {
 
   part {
     content_type = "text/x-shellscript"
-    content      = templatefile("${path.module}/init.sh", { user = var.user, github_user = var.github_user, host_name = var.host_name, full_name = var.full_name, email = var.email})
+    content      = templatefile("${path.module}/init.sh", { user = var.user, github_user = var.github_user, host_name = var.host_name, full_name = var.full_name, email = var.email, env = var.env})
     #templatefile("${path.module}/backends.tmpl", { port = 8080, ip_addrs = ["10.0.0.1", "10.0.0.2"] })
   }
 }
