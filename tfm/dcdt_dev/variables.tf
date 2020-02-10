@@ -51,6 +51,10 @@ variable "host_name" {
   type = string
 }
 
+variable "env_version" {
+  type = string
+}
+
 # data "aws_vpc" "selected" {
 #   filter {
 #     name = "tag:Name"
