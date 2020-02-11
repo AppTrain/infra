@@ -40,7 +40,7 @@ resource "aws_instance" "this" {
   subnet_id = var.subnet_id
 
   lifecycle {
-    ignore_changes = ["user_data_base64"]
+    ignore_changes = [user_data_base64]
   }
 
   tags = {
