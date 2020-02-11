@@ -1,6 +1,5 @@
 
 locals {
-  jeremiah_office = "104.136.141.97/32"
   jason_home   = "45.30.144.158/32"
 }
 
