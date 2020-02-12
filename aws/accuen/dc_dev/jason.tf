@@ -1,6 +1,6 @@
 
 locals {
-  jason_home   = "45.30.144.158/32"
+  jason_home = "45.30.144.158/32"
 }
 
 module "jason_dev_instance" {
