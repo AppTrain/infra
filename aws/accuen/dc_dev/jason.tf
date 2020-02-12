@@ -6,7 +6,7 @@ locals {
 module "jason_dev_instance" {
   #source = "git@github.com:accuenmedia/infra.git//tfm/dcdt_dev"
   source        = "../../../tfm/dcdt_dev"
-  env_version   = "annalect_dev_env_100"
+  env_version   = "annalect_dev_env_102"
   env           = "dev1"
   vpc_id        = data.aws_vpc.dev1.id
   subnet_id     = data.aws_subnet.dev1_public_2b.id
