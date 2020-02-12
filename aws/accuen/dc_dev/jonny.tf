@@ -7,7 +7,7 @@ module "jonny_dev_instance" {
   vpc_id        = data.aws_vpc.dev1.id
   subnet_id     = data.aws_subnet.dev1_public_2b.id
   full_name     = "Jonathan Harrison"
-  email         = "xxxxxxxx@annalect.com"
+  email         = "jonathan.harrison@annalect.com"
   user          = "jonny"
   github_user   = "jonjharrison"
   zone_id       = data.aws_route53_zone.accuen.zone_id

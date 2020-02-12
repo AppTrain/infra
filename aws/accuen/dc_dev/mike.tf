@@ -14,7 +14,6 @@ module "mike_dev_instance" {
   dns_name      = "mb.accuenplatform.com"
   host_name     = "mb"
   instance_type = "m5.xlarge"
-  access_ssh    = [local.jeremiah_office, local.jason_home]
-  access_web    = [local.jeremiah_office, local.jason_home]
-  #bastion_security_group_id = "${module.dev1bastion.security_group_id}"
+  access_ssh    = ["45.30.144.158/32"]
+  access_web    = ["45.30.144.158/32"]
 }
