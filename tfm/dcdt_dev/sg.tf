@@ -33,7 +33,7 @@ resource "aws_security_group_rule" "this_inbound_22" {
   to_port   = 22
 }
 
-resource "aws_security_group_rule" "this_inbound_80" {
+resource "aws_security_group_rule" "this_inbound_9091" {
   security_group_id = aws_security_group.this.id
   # TODO: SECURITY: FIX
 
@@ -42,21 +42,8 @@ resource "aws_security_group_rule" "this_inbound_80" {
 
   cidr_blocks = var.access_web
 
-  from_port = 80
-  to_port   = 80
-}
-
-resource "aws_security_group_rule" "this_inbound_443" {
-  security_group_id = aws_security_group.this.id
-  # TODO: SECURITY: FIX
-
-  type     = "ingress"
-  protocol = "tcp"
-
-  cidr_blocks = var.access_web
-
-  from_port = 443
-  to_port   = 443
+  from_port = 9091
+  to_port   = 9091
 }
 
 resource "aws_security_group_rule" "this_inbound_mosh" {
