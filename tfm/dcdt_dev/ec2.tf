@@ -39,9 +39,9 @@ resource "aws_instance" "this" {
   key_name  = "annalect-dev1-bastion"
   subnet_id = var.subnet_id
 
-  lifecycle {
-    ignore_changes = [user_data_base64]
-  }
+  # lifecycle {
+  #   ignore_changes = [user_data_base64]
+  # }
 
   tags = {
     Name        = "dc_${var.env}_${var.user}"

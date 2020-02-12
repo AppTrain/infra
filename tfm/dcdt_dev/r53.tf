@@ -1,7 +1,7 @@
 
 
 data "aws_route53_zone" "dev" {
-  name = "dev1.in.accuenplatform.com."
+  name         = "dev1.in.accuenplatform.com."
   private_zone = true
 }
 

@@ -35,5 +35,5 @@ echo "$key_contents"
 EOF > $LOCAL_BIN/connect_github
 chmod +x $LOCAL_BIN/connect_github
 
-chown -R ${user}: $DEV_HOME
+chown -R ${user}:aeu $DEV_HOME
 chmod 600 $DEV_HOME/.ssh/id_ed25519

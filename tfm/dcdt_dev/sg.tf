@@ -11,6 +11,7 @@ resource "aws_security_group" "this" {
 
 resource "aws_security_group_rule" "this_outbound" {
   security_group_id = aws_security_group.this.id
+  description       = "world access"
 
   type     = "egress"
   protocol = "-1"
@@ -46,17 +47,17 @@ resource "aws_security_group_rule" "this_inbound_9091" {
   to_port   = 9091
 }
 
-resource "aws_security_group_rule" "this_inbound_mosh" {
-  security_group_id = aws_security_group.this.id
+# resource "aws_security_group_rule" "this_inbound_mosh" {
+#   security_group_id = aws_security_group.this.id
 
-  type     = "ingress"
-  protocol = "udp"
+#   type     = "ingress"
+#   protocol = "udp"
 
-  cidr_blocks = var.access_ssh
+#   cidr_blocks = var.access_ssh
 
-  from_port = 60001
-  to_port   = 60001
-}
+#   from_port = 60001
+#   to_port   = 60001
+# }
 
 resource "aws_security_group_rule" "this_inbound_eternal_terminal" {
   security_group_id = aws_security_group.this.id
