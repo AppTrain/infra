@@ -1,3 +1,7 @@
 steps:
   - label: "infra ci"
     command: ./build.sh
+    # agents: 
+    #   queue: ops
+    concurrency: 1
+    concurrency_group: buildkite/ops/terraform
