@@ -13,7 +13,7 @@ module "jeremiah_dev_instance" {
   subnet_id     = data.aws_subnet.dev1_public_2b.id
   full_name     = "Jeremiah Campbell"
   email         = "jeremiah.campbell@annalect.com"
-  user          = "jeremiah"
+  user          = "mt"
   github_user   = "meantheory"
   zone_id       = data.aws_route53_zone.accuen.zone_id
   dns_name      = "dev63.accuenplatform.com"
