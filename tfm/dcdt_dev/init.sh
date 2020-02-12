@@ -18,6 +18,7 @@ sudo -i -u ${user} git config --global user.name "${full_name}"
 sudo -i -u ${user} git config --global user.email "${email}"
 sudo -i -u ${user} echo "${env}" > $DEV_HOME/.annalectenv
 sudo -i -u ${user} echo "${dns}" > $DEV_HOME/.annalectr53
+sudo -i -u ${user} echo "${host_name}.dev1.in.accuenplatform.com" > $DEV_HOME/.annalectr53-interanl
 
 cat << EOF
 EC2_INSTANCE_ID="`wget -q -O - http://169.254.169.254/latest/meta-data/instance-id || die \"wget instance-id has failed: $?\"`"
