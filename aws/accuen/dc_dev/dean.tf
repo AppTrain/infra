@@ -8,7 +8,7 @@ module "dean_dev_instance" {
   subnet_id     = data.aws_subnet.dev1_public_2b.id
   full_name     = "Dean Kondo"
   email         = "dean.kondo@annalect.com"
-  user          = "awesome"
+  user          = "dean"
   github_user   = "xxxxxxxxxxxx"
   zone_id       = data.aws_route53_zone.accuen.zone_id
   dns_name      = "dk.accuenplatform.com"

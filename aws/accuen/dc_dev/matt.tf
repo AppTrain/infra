@@ -7,8 +7,8 @@ module "matt_dev_instance" {
   vpc_id        = data.aws_vpc.dev1.id
   subnet_id     = data.aws_subnet.dev1_public_2b.id
   full_name     = "Matt Artingstall"
-  email         = "xxxxxxxx@annalect.com"
-  user          = "awesome"
+  email         = "matt.artingstall@annalect.com"
+  user          = "matt"
   github_user   = "martingstall"
   zone_id       = data.aws_route53_zone.accuen.zone_id
   dns_name      = "ma.accuenplatform.com"

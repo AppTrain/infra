@@ -8,7 +8,7 @@ module "jonny_dev_instance" {
   subnet_id     = data.aws_subnet.dev1_public_2b.id
   full_name     = "Jonathan Harrison"
   email         = "xxxxxxxx@annalect.com"
-  user          = "awesome"
+  user          = "jonny"
   github_user   = "jonjharrison"
   zone_id       = data.aws_route53_zone.accuen.zone_id
   dns_name      = "jjh.accuenplatform.com"
