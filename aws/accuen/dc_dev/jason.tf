@@ -13,10 +13,10 @@ module "jason_dev_instance" {
   full_name     = "Jason Miller"
   email         = "jason.miller@annalect.com"
   user          = "jason"
-  github_user   = "jmille4"
+  github_user   = "jlmille4"
   zone_id       = data.aws_route53_zone.accuen.zone_id
-  dns_name      = "theboss.accuenplatform.com"
-  host_name     = "theboss"
+  dns_name      = "jlm.accuenplatform.com"
+  host_name     = "skippy"
   instance_type = "m5.xlarge"
   access_ssh    = [local.jeremiah_office, local.jason_home]
   access_web    = [local.jeremiah_office, local.jason_home]
